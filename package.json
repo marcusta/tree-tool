@@ -1,0 +1,19 @@
+{
+    "name": "tree-tool",
+    "private": true,
+    "type": "module",
+    "workspaces": ["packages/*", "app"],
+    "scripts": {
+        "dev": "cd app && bunx vite",
+        "build": "cd app && bunx vite build",
+        "preview": "cd app && bunx vite preview",
+        "test": "bun test packages",
+        "typecheck": "tsc --noEmit -p .",
+        "package": "bun scripts/package.ts"
+    },
+    "devDependencies": {
+        "@types/bun": "^1",
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1"
+    }
+}

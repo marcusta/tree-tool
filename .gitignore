@@ -1,0 +1,5 @@
+node_modules
+dist
+out
+*.unitypackage
+.DS_Store

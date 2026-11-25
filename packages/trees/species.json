@@ -1,0 +1,591 @@
+{
+  "comment": "Tree species for shared/trees/generator.ts. A species = its materials (the NatureManufacture shader materials Unity draws it with, the atlas rectangles that are its twigs, the pictures the web editor shows), its own defaults laid over the generator's, its presets laid over those, and optionally `lods` = its own detail levels (tube sides per branch order, share of cards kept) in place of the generator's. Unity material: `from` = the NatureManufacture material copied as a template, `textures` = shader property -> texture asset name (a course's own tinted copy when it has one), `ctiNormals` = shader property -> a normal map in Forst's CTI packing, converted for the NM shader, `floats` = shader property -> number, `colors` = shader property -> [r, g, b]; all set on the copy. atlasAspect = the leaf atlas' width over its height when not square. Sprite rect = u0, v0, u1, v1 in the leaf atlas (origin bottom left), base = where the twig's stem starts, hang = a twig that falls straight down from its base (birch, weeping willow), along = a base at the top on a twig that follows its branch all the same (spruce sprays). web = files under the Unity project's Assets folder, copied for the editor by `bun run trees -- textures`. `atlas` = a leaf atlas drawn in the repo (shared/trees/atlas/<atlas>.png, pipeline/tree_atlas.py) in place of a pack's; the Unity material then names it under `ownTextures` as `GolfMap Tree Atlas <atlas>` ('' = no texture on that property).",
+  "species": {
+    "pine": {
+      "name": "Scots pine",
+      "materials": {
+        "bark": "M_Pine_trunk_03",
+        "leaves": "M_Pine_leaves",
+        "sprites": [
+          {"id": "tuft-wide", "rect": [0.48, 0.04, 0.76, 0.215], "base": [0.615, 0.04], "weight": 5},
+          {"id": "fan", "rect": [0.085, 0.49, 0.325, 0.715], "base": [0.2, 0.495], "weight": 3},
+          {"id": "spire", "rect": [0.22, 0.315, 0.385, 0.575], "base": [0.3, 0.32], "weight": 4},
+          {"id": "twig-a", "rect": [0.085, 0.72, 0.245, 0.995], "base": [0.098, 0.727], "weight": 2},
+          {"id": "twig-b", "rect": [0.245, 0.725, 0.415, 0.995], "base": [0.308, 0.73], "weight": 2},
+          {"id": "spray", "rect": [0.59, 0.21, 0.745, 0.42], "base": [0.74, 0.21], "weight": 2}
+        ]
+      },
+      "unity": {
+        "bark": {"from": "M_Pine_trunk_03"},
+        "leaves": {"from": "M_Pine_leaves"}
+      },
+      "web": {"bark": "NatureManufacture Assets/Mountain Environment/Pine_trees/Textures/T_Pine_trunk_03_BC.tga", "barkNormal": "NatureManufacture Assets/Mountain Environment/Pine_trees/Textures/T_Pine_trunk_03_N.tga", "leaves": "NatureManufacture Assets/Mountain Environment/Pine_trees/Textures/T_Pine_atlas_01_BC.tga"},
+      "defaults": {},
+      "presets": {
+        "full": {"stubs": 2},
+        "veteran-slope": {
+          "heightM": 19, "trunkRadiusM": 0.55, "leanDeg": 1, "wobbleM": 0.19, "crownRadiusM": 9.5,
+          "crownBase": 0.49, "stemEndsAt": 0.625, "stubs": 1, "barkTopV": 0.42,
+          "sides": {"spacingMinM": 0.26, "spacingMaxM": 0.58, "perNode": [1, 2, 2, 3], "lengthMin": 0.14, "lengthMax": 0.29, "angleMinDeg": 31, "angleMaxDeg": 71, "upDown": 0.40, "crooked": 0.62, "droop": 0.13},
+          "twigs": {"perM": 4.1, "lengthMinM": 0.28, "lengthMaxM": 0.74},
+          "needles": {"limbTip": 5, "sideTip": 5, "twigTip": 4, "twigMid": 2, "sizeM": 0.68, "upward": 0.27, "scatter": 0.69, "shrinkTop": 0.12},
+          "boughGuides": [
+            {"parent":-1,"at":0.80,"radius":0.72,"foliageFrom":0.54,"points":[[-0.18,-0.05,0.526],[-0.43,-0.12,0.513],[-0.61,-0.21,0.462],[-0.71,-0.24,0.335],[-0.96,-0.18,0.246]]},
+            {"parent":0,"at":0.58,"radius":0.57,"foliageFrom":0.36,"points":[[-0.73,-0.07,0.423],[-0.84,0.04,0.334],[-1.01,0.04,0.329]]},
+            {"parent":0,"at":0.71,"radius":0.62,"foliageFrom":0.43,"points":[[-0.76,-0.34,0.295],[-0.83,-0.43,0.233],[-1.01,-0.52,0.218]]},
+            {"parent":-1,"at":0.86,"radius":0.74,"foliageFrom":0.40,"points":[[-0.18,0.08,0.545],[-0.36,0.13,0.578],[-0.65,0.20,0.545],[-0.83,0.14,0.484],[-0.98,0.13,0.466]]},
+            {"parent":3,"at":0.43,"radius":0.63,"foliageFrom":0.27,"points":[[-0.57,0.36,0.544],[-0.68,0.46,0.441],[-0.92,0.48,0.397]]},
+            {"parent":3,"at":0.60,"radius":0.52,"foliageFrom":0.23,"points":[[-0.74,0.08,0.538],[-0.86,-0.11,0.502]]},
+            {"parent":-1,"at":0.91,"radius":0.79,"foliageFrom":0.48,"points":[[-0.18,-0.06,0.607],[-0.34,-0.05,0.641],[-0.48,-0.08,0.721],[-0.63,-0.03,0.775],[-0.40,0.02,0.806]]},
+            {"parent":6,"at":0.51,"radius":0.64,"foliageFrom":0.31,"points":[[-0.56,-0.25,0.656],[-0.66,-0.31,0.598],[-0.78,-0.35,0.592]]},
+            {"parent":6,"at":0.70,"radius":0.55,"foliageFrom":0.22,"points":[[-0.68,0.13,0.713],[-0.79,0.22,0.680]]},
+            {"parent":-1,"at":1,"radius":1.02,"foliageFrom":0.61,"points":[[0.012,0.03,0.686],[0.11,0.07,0.755],[0.16,0.13,0.842],[0.28,0.12,0.893],[0.45,0.10,0.932]]},
+            {"parent":9,"at":0.39,"radius":0.78,"foliageFrom":0.31,"points":[[0.02,-0.01,0.824],[-0.035,-0.11,0.895],[-0.024,-0.15,0.936]]},
+            {"parent":9,"at":0.70,"radius":0.65,"foliageFrom":0.22,"points":[[0.29,0.29,0.891],[0.43,0.35,0.879],[0.52,0.36,0.841]]},
+            {"parent":-1,"at":0.98,"radius":0.73,"foliageFrom":0.46,"points":[[0.08,-0.13,0.68],[0.24,-0.17,0.723],[0.38,-0.21,0.721],[0.52,-0.15,0.747],[0.64,-0.11,0.769]]},
+            {"parent":12,"at":0.56,"radius":0.65,"foliageFrom":0.34,"points":[[0.44,-0.38,0.688],[0.54,-0.45,0.64],[0.65,-0.42,0.623]]},
+            {"parent":-1,"at":0.84,"radius":0.48,"foliageFrom":0.37,"points":[[0.16,0.06,0.55],[0.32,0.30,0.566],[0.47,0.37,0.542],[0.65,0.40,0.563]]},
+            {"parent":-1,"at":0.88,"radius":0.58,"foliageFrom":0.53,"points":[[-0.08,-0.24,0.594],[-0.21,-0.43,0.636],[-0.29,-0.67,0.665]]},
+            {"parent":-1,"at":0.95,"radius":0.65,"foliageFrom":0.55,"points":[[-0.13,0.24,0.652],[-0.15,0.48,0.711],[-0.31,0.68,0.730]]},
+            {"parent":9,"at":0.32,"radius":0.68,"foliageFrom":0.32,"points":[[0.16,-0.16,0.781],[0.24,-0.37,0.804],[0.19,-0.55,0.828]]},
+            {"parent":9,"at":0.63,"radius":0.62,"foliageFrom":0.29,"points":[[0.10,0.34,0.866],[0.04,0.48,0.887],[-0.04,0.58,0.859]]},
+            {"parent":0,"at":0.27,"radius":0.43,"foliageFrom":0.31,"points":[[-0.34,-0.22,0.495],[-0.47,-0.36,0.461],[-0.59,-0.41,0.462]]},
+            {"parent":3,"at":0.34,"radius":0.47,"foliageFrom":0.32,"points":[[-0.38,0.32,0.605],[-0.55,0.35,0.620],[-0.64,0.31,0.611]]},
+            {"parent":6,"at":0.33,"radius":0.48,"foliageFrom":0.19,"points":[[-0.22,-0.23,0.662],[-0.36,-0.32,0.688],[-0.43,-0.39,0.683]]},
+            {"parent":9,"at":0.25,"radius":0.58,"foliageFrom":0.26,"points":[[-0.03,0.24,0.746],[-0.14,0.36,0.746],[-0.24,0.42,0.768]]},
+            {"parent":12,"at":0.30,"radius":0.48,"foliageFrom":0.35,"points":[[0.26,-0.24,0.676],[0.33,-0.34,0.655],[0.42,-0.41,0.659]]},
+            {"parent":14,"at":0.41,"radius":0.38,"foliageFrom":0.52,"points":[[0.27,0.40,0.54],[0.35,0.52,0.519],[0.46,0.50,0.529]]},
+            {"parent":16,"at":0.48,"radius":0.52,"foliageFrom":0.30,"points":[[-0.03,0.51,0.669],[0.09,0.59,0.697],[0.18,0.62,0.684]]},
+            {"parent":10,"at":0.60,"radius":0.52,"foliageFrom":0.22,"points":[[0.05,-0.25,0.901],[0.13,-0.30,0.911],[0.23,-0.32,0.896]]},
+            {"parent":0,"at":0.67,"radius":0.39,"foliageFrom":0.69,"points":[[-0.72,-0.14,0.299],[-0.81,-0.09,0.248],[-0.91,-0.04,0.223],[-1.02,0.01,0.205]]},
+            {"parent":13,"at":0.49,"radius":0.51,"foliageFrom":0.34,"points":[[0.51,-0.26,0.623],[0.57,-0.20,0.581],[0.70,-0.14,0.574]]},
+            {"parent":15,"at":0.51,"radius":0.56,"foliageFrom":0.26,"points":[[-0.16,-0.38,0.583],[-0.24,-0.44,0.577],[-0.34,-0.52,0.552]]}
+          ]
+        },
+        "full-high": {"skipWhorls": 2, "stubs": 4},
+        "windswept": {
+          "heightM": 13, "trunkRadiusM": 0.22, "leanDeg": 7, "wobbleM": 0.18, "crownBase": 0.64, "stemEndsAt": 0.72, "crownRadiusM": 3.65, "stubs": 2,
+          "crownForm": "spreading", "crownSlopeDeg": 16,
+          "limbs": {"windBias": 0.30, "crooked": 0.55},
+          "sides": {"startAt": 0.30, "spacingMinM": 0.26, "spacingMaxM": 0.63, "lengthMin": 0.22, "lengthMax": 0.55, "angleMinDeg": 40, "angleMaxDeg": 74, "upDown": 0.18},
+          "twigs": {"perM": 3.6, "lengthMinM": 0.24, "lengthMaxM": 0.68},
+          "needles": {"sizeM": 0.74, "upward": 0.24, "scatter": 0.66, "shrinkTop": 0.18, "alongPerM": 0.85}
+        }
+      }
+    },
+    "honey-mesquite": {
+      "name": "Honey Mesquite", "atlas": "honey-mesquite", "barkAtlas": "honey-mesquite-bark", "web": {},
+      "materials": {
+        "bark": "GolfMap Honey Mesquite Bark", "leaves": "GolfMap Honey Mesquite Leaves", "barkTileM": 0.75,
+        "sprites": [
+          {"id":"shoot-a","rect":[0,0.5,0.5,1],"base":[0.25,0.51],"weight":3},
+          {"id":"shoot-b","rect":[0.5,0.5,1,1],"base":[0.75,0.51],"weight":3},
+          {"id":"shoot-c","rect":[0,0,0.5,0.5],"base":[0.25,0.01],"weight":3},
+          {"id":"shoot-d","rect":[0.5,0,1,0.5],"base":[0.75,0.01],"weight":1}
+        ]
+      },
+      "unity": {
+        "bark": {"from":"M_Pine_trunk_03","ownTextures":{"_MainTex":"GolfMap Tree Atlas honey-mesquite-bark","_BumpMap":"","_DetailMask":"","_DetailAlbedoMap":"","_DetailNormalMap":"","_MetalicRAOGSmothnessA":"","_DetailMetalicRAOGSmothnessA":""},"floats":{"_AmbientOcclusionPower":0,"_SmoothnessPower":0,"_MetallicPower":0}},
+        "leaves": {"from":"M_Pine_leaves","ownTextures":{"_MainTex":"GolfMap Tree Atlas honey-mesquite","_BumpMap":"","_AmbientOcclusionGSmoothnessA":""},"floats":{"_Cutoff":0.3,"_SpecularPower":0,"_SmoothnessPower":0,"_AmbientOcclusionPower":0},"colors":{"_HealthyColor":[1,1,1],"_DryColor":[0.98,0.96,0.89]}}
+      },
+      "defaults": {
+        "heightM":8,"trunkRadiusM":0.25,"crownBase":0.2,"stemEndsAt":0.34,"crownRadiusM":5.24,"leanDeg":12,"wobbleM":0.4,"stubs":0,"guideWanderM":0.12,"stemPath":[[0,0,0],[-0.012,0,0.24],[-0.025,0.008,0.53],[-0.017,0.012,0.73],[0.018,0.024,1]],
+        "sides": {"startAt":0.34,"spacingMinM":0.43,"spacingMaxM":1.04,"perNode":[1,1,2,2],"angleMinDeg":31,"angleMaxDeg":73,"lengthMin":0.2,"lengthMax":0.5,"upDown":0.57,"droop":0.65,"crooked":0.62},
+        "twigs": {"perM":3.2,"lengthMinM":0.3,"lengthMaxM":0.88,"angleMinDeg":24,"angleMaxDeg":75},
+        "needles": {"limbTip":3,"sideTip":3,"twigTip":2,"twigMid":1,"sizeM":0.74,"upward":0.25,"scatter":0.68,"shrinkTop":0.14}
+      },
+      "lods": [
+        {"trunk":12,"limb":7,"side":4,"twig":3,"cards":0.95,"cardScale":1,"cardRows":1,"segStep":2,"sideMinM":0},
+        {"trunk":8,"limb":5,"side":3,"twig":0,"cards":0.48,"cardScale":1.22,"cardRows":1,"segStep":4,"sideMinM":0.3},
+        {"trunk":6,"limb":4,"side":0,"twig":0,"cards":0.2,"cardScale":1.5,"cardRows":1,"segStep":5,"sideMinM":0.9}
+      ],
+      "presets": {
+        "spreading": {
+          "boughGuides": [
+            {"parent":-1,"at":0.47,"radius":0.81,"foliageFrom":0.46,"colliderTo":0.56,"points":[[-0.14,-0.07,0.25],[-0.38,-0.15,0.36],[-0.6,-0.14,0.405],[-0.76,-0.08,0.47],[-0.79,-0.04,0.61],[-0.91,-0.07,0.68]]},
+            {"parent":-1,"at":0.59,"radius":0.86,"foliageFrom":0.48,"colliderTo":0.57,"points":[[0.13,0.11,0.3],[0.31,0.13,0.41],[0.52,0.09,0.43],[0.66,0.13,0.47],[0.82,0.2,0.48],[0.96,0.27,0.53]]},
+            {"parent":-1,"at":1,"radius":0.97,"foliageFrom":0.48,"colliderTo":0.52,"points":[[0.01,0.11,0.48],[-0.085,0.19,0.61],[0,0.29,0.75],[0.11,0.34,0.83],[0.2,0.38,0.91],[0.23,0.41,0.95]]},
+            {"parent":-1,"at":0.75,"radius":0.67,"foliageFrom":0.46,"colliderTo":0.46,"points":[[-0.09,0.17,0.43],[-0.26,0.36,0.51],[-0.23,0.57,0.61],[-0.38,0.78,0.64],[-0.53,0.92,0.55]]},
+            {"parent":-1,"at":0.9,"radius":0.74,"foliageFrom":0.47,"colliderTo":0.45,"points":[[0.09,-0.24,0.46],[0.05,-0.45,0.57],[0.21,-0.59,0.66],[0.26,-0.79,0.62],[0.24,-0.96,0.53]]},
+            {"parent":0,"at":0.48,"radius":0.65,"foliageFrom":0.29,"points":[[-0.58,-0.28,0.56],[-0.7,-0.42,0.65],[-0.86,-0.55,0.63],[-0.96,-0.61,0.54]]},
+            {"parent":0,"at":0.63,"radius":0.54,"foliageFrom":0.23,"points":[[-0.64,0.02,0.69],[-0.62,0.2,0.74],[-0.83,0.38,0.67]]},
+            {"parent":0,"at":0.36,"radius":0.57,"foliageFrom":0.31,"points":[[-0.35,-0.28,0.61],[-0.47,-0.37,0.73],[-0.57,-0.51,0.75],[-0.64,-0.61,0.66]]},
+            {"parent":1,"at":0.39,"radius":0.71,"foliageFrom":0.27,"points":[[0.48,-0.05,0.65],[0.63,-0.22,0.69],[0.85,-0.31,0.65],[0.96,-0.4,0.55]]},
+            {"parent":1,"at":0.62,"radius":0.52,"foliageFrom":0.22,"points":[[0.69,0.32,0.75],[0.7,0.53,0.75],[0.8,0.66,0.67]]},
+            {"parent":2,"at":0.43,"radius":0.7,"foliageFrom":0.31,"points":[[-0.2,0.2,0.76],[-0.26,0.2,0.88],[-0.4,0.29,0.9],[-0.5,0.41,0.84]]},
+            {"parent":2,"at":0.59,"radius":0.67,"foliageFrom":0.23,"points":[[0.03,0.15,0.85],[0.04,-0.02,0.9],[0.18,-0.17,0.91],[0.3,-0.2,0.84]]},
+            {"parent":2,"at":0.54,"radius":0.58,"foliageFrom":0.26,"points":[[-0.04,0.45,0.84],[-0.08,0.62,0.84],[-0.18,0.75,0.77]]},
+            {"parent":3,"at":0.47,"radius":0.58,"foliageFrom":0.26,"points":[[-0.4,0.48,0.63],[-0.52,0.54,0.7],[-0.73,0.69,0.62]]},
+            {"parent":3,"at":0.61,"radius":0.62,"foliageFrom":0.31,"points":[[-0.17,0.7,0.68],[-0.02,0.84,0.7],[0.17,0.91,0.64]]},
+            {"parent":4,"at":0.42,"radius":0.65,"foliageFrom":0.32,"points":[[-0.03,-0.51,0.62],[-0.19,-0.65,0.66],[-0.37,-0.81,0.59]]},
+            {"parent":4,"at":0.52,"radius":0.59,"foliageFrom":0.29,"points":[[0.29,-0.58,0.74],[0.47,-0.66,0.72],[0.59,-0.77,0.59]]},
+            {"parent":0,"at":0.31,"radius":0.53,"foliageFrom":0.39,"points":[[-0.28,-0.01,0.55],[-0.31,0.04,0.66],[-0.28,0.02,0.73]]},
+            {"parent":1,"at":0.37,"radius":0.55,"foliageFrom":0.31,"points":[[0.38,0.29,0.67],[0.44,0.4,0.76],[0.53,0.47,0.72]]},
+            {"parent":0,"at":0.7,"radius":0.48,"foliageFrom":0.3,"points":[[-0.76,-0.18,0.62],[-0.87,-0.24,0.69],[-0.96,-0.24,0.76]]},
+            {"parent":1,"at":0.62,"radius":0.62,"foliageFrom":0.25,"points":[[0.68,0.16,0.53],[0.7,0.07,0.65],[0.8,0.04,0.77]]},
+            {"parent":2,"at":0.48,"radius":0.64,"foliageFrom":0.23,"points":[[-0.17,0.28,0.78],[-0.25,0.24,0.85],[-0.31,0.2,0.92]]},
+            {"parent":0,"at":0.5,"radius":0.3,"foliageFrom":1,"points":[[-0.52,-0.29,0.39],[-0.61,-0.38,0.35],[-0.72,-0.44,0.33]],"bare":true},
+            {"parent":1,"at":0.6,"radius":0.36,"foliageFrom":1,"points":[[0.66,-0.04,0.43],[0.8,-0.1,0.4],[0.89,-0.14,0.43]],"bare":true},
+            {"parent":0,"at":0.36,"radius":0.64,"foliageFrom":0.3,"points":[[-0.36,-0.04,0.46],[-0.31,-0.14,0.55],[-0.42,-0.22,0.66],[-0.4,-0.3,0.77]]},
+            {"parent":1,"at":0.39,"radius":0.58,"foliageFrom":0.28,"points":[[0.35,-0.1,0.43],[0.45,-0.22,0.48],[0.55,-0.27,0.51],[0.63,-0.39,0.5]]},
+            {"parent":2,"at":0.38,"radius":0.67,"foliageFrom":0.24,"points":[[0.06,-0.06,0.55],[0.02,-0.2,0.63],[0.1,-0.31,0.73],[0.16,-0.4,0.76]]},
+            {"parent":1,"at":0.56,"radius":0.47,"foliageFrom":0.19,"points":[[0.53,0.23,0.49],[0.69,0.38,0.53],[0.82,0.49,0.5]]},
+            {"parent":2,"at":0.55,"radius":0.6,"foliageFrom":0.2,"points":[[-0.05,0.26,0.76],[-0.17,0.21,0.81],[-0.23,0.18,0.87]]},
+            {"parent":3,"at":0.55,"radius":0.57,"foliageFrom":0.28,"points":[[-0.32,0.53,0.57],[-0.42,0.63,0.53],[-0.54,0.66,0.46]]},
+            {"parent":4,"at":0.6,"radius":0.48,"foliageFrom":0.3,"points":[[0.28,-0.66,0.62],[0.38,-0.82,0.57],[0.51,-0.83,0.5]]},
+            {"parent":7,"at":0.76,"radius":0.53,"foliageFrom":0.25,"points":[[-0.56,-0.52,0.77],[-0.59,-0.56,0.85],[-0.56,-0.6,0.92]]},
+            {"parent":9,"at":0.76,"radius":0.53,"foliageFrom":0.25,"points":[[0.73,0.53,0.76],[0.8,0.58,0.83],[0.89,0.62,0.87]]},
+            {"parent":2,"at":0.33,"radius":0.58,"foliageFrom":0.25,"points":[[0.1,0.08,0.53],[0.19,-0.06,0.55],[0.22,-0.14,0.62]]},
+            {"parent":0,"at":0.33,"radius":0.54,"foliageFrom":0.18,"points":[[-0.32,-0.23,0.41],[-0.45,-0.34,0.44],[-0.52,-0.4,0.51]]}
+          ]
+        },
+        "open-fork": {
+          "heightM":7,"trunkRadiusM":0.255,"stemEndsAt":0.205,"crownRadiusM":4.3,"leanDeg":6,"wobbleM":0.42,"sides":{"spacingMinM":0.32,"spacingMaxM":0.76,"perNode":[1,2,2,3],"lengthMin":0.19,"lengthMax":0.47,"crooked":0.9},"twigs":{"perM":3.9,"lengthMinM":0.36,"lengthMaxM":1.2},"needles":{"limbTip":4,"sideTip":3,"twigTip":2,"twigMid":1,"sizeM":0.81},"stemPath":[[0,0,0],[0.008,0,0.27],[0.018,0.008,0.55],[0.035,0.016,0.8],[0.05,0.02,1]],
+          "boughGuides": [
+            {"parent":-1,"at":0.68,"radius":0.8,"foliageFrom":0.56,"points":[[-0.16,-0.09,0.22],[-0.37,-0.13,0.28],[-0.54,-0.14,0.32],[-0.57,-0.12,0.47],[-0.72,-0.14,0.55],[-0.79,-0.12,0.68]],"colliderTo":0.62},
+            {"parent":-1,"at":0.88,"radius":0.89,"foliageFrom":0.49,"points":[[0.1,0.06,0.31],[0.22,0.04,0.4],[0.36,0.02,0.5],[0.53,0.06,0.56],[0.65,0.04,0.67],[0.83,0.13,0.69]],"colliderTo":0.6},
+            {"parent":-1,"at":1,"radius":0.91,"foliageFrom":0.51,"points":[[0.02,0.03,0.36],[-0.04,0.11,0.49],[0.06,0.12,0.64],[0.02,0.12,0.79],[0.12,0.18,0.92],[0.14,0.16,0.97]],"colliderTo":0.58},
+            {"parent":-1,"at":0.94,"radius":0.68,"foliageFrom":0.47,"points":[[-0.1,0.18,0.34],[-0.26,0.28,0.43],[-0.37,0.45,0.6],[-0.54,0.6,0.63],[-0.63,0.77,0.74]],"colliderTo":0.5},
+            {"parent":-1,"at":0.78,"radius":0.63,"foliageFrom":0.58,"points":[[0.1,-0.16,0.28],[0.22,-0.37,0.39],[0.29,-0.45,0.56],[0.42,-0.62,0.64],[0.42,-0.78,0.69]],"colliderTo":0.51},
+            {"parent":0,"at":0.52,"radius":0.66,"foliageFrom":0.45,"points":[[-0.49,-0.23,0.43],[-0.43,-0.29,0.58],[-0.45,-0.39,0.74],[-0.55,-0.42,0.78]]},
+            {"parent":0,"at":0.73,"radius":0.66,"foliageFrom":0.46,"points":[[-0.68,0,0.55],[-0.78,0.11,0.64],[-0.9,0.14,0.66],[-0.96,0.17,0.74]]},
+            {"parent":0,"at":0.43,"radius":0.5,"foliageFrom":0.59,"points":[[-0.45,-0.06,0.4],[-0.39,0.01,0.54],[-0.29,0.05,0.61],[-0.25,0.08,0.72]]},
+            {"parent":1,"at":0.54,"radius":0.66,"foliageFrom":0.39,"points":[[0.44,-0.13,0.6],[0.55,-0.21,0.65],[0.68,-0.26,0.7],[0.76,-0.3,0.79]]},
+            {"parent":1,"at":0.69,"radius":0.45,"foliageFrom":0.53,"points":[[0.6,0.21,0.66],[0.68,0.35,0.72],[0.8,0.47,0.78]]},
+            {"parent":2,"at":0.43,"radius":0.64,"foliageFrom":0.43,"points":[[-0.05,0.05,0.64],[-0.18,-0.02,0.72],[-0.24,-0.03,0.82],[-0.35,-0.09,0.87]]},
+            {"parent":2,"at":0.65,"radius":0.61,"foliageFrom":0.34,"points":[[0.12,0.18,0.8],[0.18,0.26,0.87],[0.32,0.36,0.93]]},
+            {"parent":3,"at":0.61,"radius":0.63,"foliageFrom":0.38,"points":[[-0.25,0.56,0.65],[-0.23,0.68,0.73],[-0.34,0.74,0.85]]},
+            {"parent":4,"at":0.46,"radius":0.65,"foliageFrom":0.53,"points":[[0.2,-0.57,0.54],[0.1,-0.7,0.65],[0.02,-0.75,0.7]]},
+            {"parent":2,"at":0.52,"radius":0.53,"foliageFrom":0.35,"points":[[0.04,-0.1,0.67],[-0.01,-0.28,0.76],[0.08,-0.4,0.84]]},
+            {"parent":1,"at":0.38,"radius":0.49,"foliageFrom":0.44,"points":[[0.35,0.22,0.53],[0.42,0.43,0.62],[0.52,0.58,0.62]]},
+            {"parent":-1,"at":0.6,"radius":0.44,"foliageFrom":1,"points":[[0.14,-0.11,0.23],[0.36,-0.17,0.29],[0.53,-0.22,0.26],[0.72,-0.24,0.25],[0.84,-0.26,0.19]],"bare":true},
+            {"parent":1,"at":0.55,"radius":0.45,"foliageFrom":1,"points":[[0.51,-0.04,0.51],[0.65,-0.09,0.52],[0.78,-0.15,0.45],[0.86,-0.18,0.36]],"bare":true},
+            {"parent":0,"at":0.64,"radius":0.37,"foliageFrom":1,"points":[[-0.63,-0.19,0.46],[-0.76,-0.25,0.44],[-0.86,-0.27,0.37],[-0.93,-0.28,0.3]],"bare":true},
+            {"parent":2,"at":0.46,"radius":0.34,"foliageFrom":1,"points":[[0.13,0.03,0.56],[0.19,-0.14,0.49],[0.17,-0.26,0.39]],"bare":true},
+            {"parent":0,"at":0.38,"radius":0.46,"foliageFrom":1,"points":[[-0.38,0.06,0.33],[-0.39,0.19,0.44],[-0.37,0.27,0.49]],"bare":true},
+            {"parent":4,"at":0.57,"radius":0.46,"foliageFrom":1,"points":[[0.35,-0.53,0.49],[0.46,-0.6,0.45],[0.54,-0.62,0.37]],"bare":true},
+            {"parent":0,"at":0.62,"radius":0.43,"foliageFrom":0.24,"points":[[-0.65,-0.18,0.46],[-0.76,-0.3,0.44],[-0.89,-0.34,0.39]]},
+            {"parent":1,"at":0.48,"radius":0.42,"foliageFrom":0.31,"points":[[0.42,0.15,0.49],[0.58,0.24,0.48],[0.69,0.3,0.42]]},
+            {"parent":2,"at":0.56,"radius":0.49,"foliageFrom":0.2,"points":[[0.11,-0.08,0.65],[0.23,-0.14,0.72],[0.3,-0.2,0.81]]},
+            {"parent":3,"at":0.51,"radius":0.46,"foliageFrom":0.24,"points":[[-0.39,0.37,0.59],[-0.47,0.46,0.75],[-0.57,0.5,0.83]]},
+            {"parent":5,"at":0.83,"radius":0.6,"foliageFrom":0.2,"points":[[-0.49,-0.37,0.77],[-0.53,-0.4,0.85],[-0.57,-0.45,0.9]]},
+            {"parent":8,"at":0.8,"radius":0.5,"foliageFrom":0.3,"points":[[0.71,-0.23,0.76],[0.83,-0.28,0.8],[0.94,-0.33,0.83]]},
+            {"parent":10,"at":0.68,"radius":0.52,"foliageFrom":0.25,"points":[[-0.23,-0.13,0.78],[-0.32,-0.19,0.85],[-0.45,-0.26,0.92]]},
+            {"parent":4,"at":0.54,"radius":0.55,"foliageFrom":0.22,"points":[[0.28,-0.56,0.48],[0.32,-0.64,0.47],[0.41,-0.72,0.42]]},
+            {"parent":2,"at":0.4,"radius":0.64,"foliageFrom":0.23,"points":[[0.01,-0.04,0.53],[-0.11,-0.15,0.57],[-0.16,-0.16,0.65],[-0.21,-0.21,0.71]]},
+            {"parent":1,"at":0.41,"radius":0.55,"foliageFrom":0.25,"points":[[0.38,0.05,0.45],[0.5,0.1,0.43],[0.6,0.08,0.37]]}
+          ]
+        }
+      }
+    },
+    "velvet-mesquite": {
+      "name": "Velvet Mesquite", "atlas": "velvet-mesquite", "barkAtlas": "velvet-mesquite-bark", "web": {},
+      "materials": {
+        "bark": "GolfMap Velvet Mesquite Bark", "leaves": "GolfMap Velvet Mesquite Leaves", "barkTileM": 0.6,
+        "sprites": [
+          {"id":"shoot-a","rect":[0,0.5,0.5,1],"base":[0.25,0.51],"weight":3},
+          {"id":"shoot-b","rect":[0.5,0.5,1,1],"base":[0.75,0.51],"weight":3},
+          {"id":"shoot-c","rect":[0,0,0.5,0.5],"base":[0.25,0.01],"weight":3},
+          {"id":"shoot-d","rect":[0.5,0,1,0.5],"base":[0.75,0.01],"weight":3}
+        ]
+      },
+      "unity": {
+        "bark": {"from":"M_Pine_trunk_03","ownTextures":{"_MainTex":"GolfMap Tree Atlas velvet-mesquite-bark","_BumpMap":"","_DetailMask":"","_DetailAlbedoMap":"","_DetailNormalMap":"","_MetalicRAOGSmothnessA":"","_DetailMetalicRAOGSmothnessA":""},"floats":{"_AmbientOcclusionPower":0,"_SmoothnessPower":0,"_MetallicPower":0}},
+        "leaves": {"from":"M_Pine_leaves","ownTextures":{"_MainTex":"GolfMap Tree Atlas velvet-mesquite","_BumpMap":"","_AmbientOcclusionGSmoothnessA":""},"floats":{"_Cutoff":0.3,"_SpecularPower":0,"_SmoothnessPower":0,"_AmbientOcclusionPower":0},"colors":{"_HealthyColor":[1,1,1],"_DryColor":[0.98,0.96,0.89]}}
+      },
+      "defaults": {
+        "heightM":6.5,"trunkRadiusM":0.19,"crownBase":0.18,"stemEndsAt":0.34,"crownRadiusM":3.8,"leanDeg":27,"wobbleM":0.62,"stubs":0,"guideWanderM":0.095,"stemPath":[[0,0,0],[0.012,0,0.20],[-0.008,0.01,0.40],[-0.068,0.016,0.63],[-0.15,0.012,0.82],[-0.22,0.02,1]],
+        "sides": {"startAt":0.34,"spacingMinM":0.36,"spacingMaxM":0.80,"perNode":[1,2,2,3],"angleMinDeg":31,"angleMaxDeg":73,"lengthMin":0.2,"lengthMax":0.5,"upDown":0.82,"droop":0.12,"crooked":0.62},
+        "twigs": {"perM":3.6,"lengthMinM":0.3,"lengthMaxM":0.88,"angleMinDeg":24,"angleMaxDeg":75},
+        "needles": {"limbTip":3,"sideTip":3,"twigTip":3,"twigMid":1,"sizeM":0.84,"upward":0.44,"scatter":0.68,"shrinkTop":0.14}
+      },
+      "lods": [
+        {"trunk":12,"limb":7,"side":4,"twig":3,"cards":0.95,"cardScale":1,"cardRows":1,"segStep":2,"sideMinM":0},
+        {"trunk":8,"limb":5,"side":3,"twig":0,"cards":0.48,"cardScale":1.22,"cardRows":1,"segStep":4,"sideMinM":0.3},
+        {"trunk":6,"limb":4,"side":0,"twig":0,"cards":0.2,"cardScale":1.5,"cardRows":1,"segStep":5,"sideMinM":0.9}
+      ],
+      "presets": {
+        "leaning": {
+          "boughGuides": [
+            {"parent":-1,"at":0.62,"radius":0.75,"foliageFrom":0.53,"colliderTo":0.62,"points":[[-0.21,-0.04,0.3],[-0.39,-0.11,0.34],[-0.54,-0.12,0.4],[-0.7,-0.15,0.46],[-0.86,-0.2,0.52],[-0.95,-0.27,0.49]]},
+            {"parent":-1,"at":0.78,"radius":0.77,"foliageFrom":0.49,"colliderTo":0.61,"points":[[0.08,0.14,0.33],[0.21,0.22,0.45],[0.32,0.28,0.58],[0.46,0.41,0.67],[0.64,0.4,0.73],[0.8,0.52,0.75]]},
+            {"parent":-1,"at":1,"radius":0.93,"foliageFrom":0.5,"colliderTo":0.6,"points":[[-0.08,0.12,0.46],[-0.14,0.2,0.55],[-0.06,0.19,0.67],[-0.05,0.22,0.78],[0.04,0.32,0.9],[0.16,0.39,0.98]]},
+            {"parent":-1,"at":0.83,"radius":0.65,"foliageFrom":0.52,"colliderTo":0.6,"points":[[0.11,-0.13,0.37],[0.2,-0.26,0.41],[0.36,-0.4,0.47],[0.52,-0.55,0.43],[0.69,-0.65,0.39]]},
+            {"parent":-1,"at":0.74,"radius":0.67,"foliageFrom":0.53,"colliderTo":0.55,"points":[[-0.18,0.13,0.34],[-0.32,0.35,0.41],[-0.43,0.53,0.56],[-0.59,0.7,0.67],[-0.66,0.82,0.7]]},
+            {"parent":0,"at":0.5,"radius":0.65,"foliageFrom":0.31,"points":[[-0.49,-0.24,0.57],[-0.53,-0.41,0.69],[-0.69,-0.52,0.73]]},
+            {"parent":0,"at":0.66,"radius":0.57,"foliageFrom":0.26,"points":[[-0.61,-0.03,0.72],[-0.64,0.14,0.77],[-0.81,0.23,0.73]]},
+            {"parent":0,"at":0.39,"radius":0.57,"foliageFrom":0.35,"points":[[-0.33,-0.29,0.53],[-0.31,-0.44,0.66],[-0.36,-0.62,0.67]]},
+            {"parent":1,"at":0.5,"radius":0.66,"foliageFrom":0.3,"points":[[0.4,0.18,0.6],[0.61,0.13,0.67],[0.76,-0.03,0.61]]},
+            {"parent":1,"at":0.65,"radius":0.64,"foliageFrom":0.24,"points":[[0.44,0.51,0.76],[0.57,0.61,0.8],[0.67,0.65,0.77]]},
+            {"parent":2,"at":0.52,"radius":0.75,"foliageFrom":0.24,"points":[[0.13,0.17,0.66],[0.23,0.13,0.82],[0.38,0.1,0.87],[0.5,0.02,0.84]]},
+            {"parent":2,"at":0.7,"radius":0.59,"foliageFrom":0.25,"points":[[-0.17,0.15,0.84],[-0.27,0.07,0.88],[-0.4,0.05,0.86]]},
+            {"parent":2,"at":0.39,"radius":0.67,"foliageFrom":0.34,"points":[[-0.04,0.02,0.54],[-0.12,-0.16,0.68],[-0.14,-0.29,0.8],[-0.08,-0.39,0.8]]},
+            {"parent":3,"at":0.55,"radius":0.69,"foliageFrom":0.23,"points":[[0.35,-0.5,0.55],[0.27,-0.65,0.66],[0.19,-0.79,0.64]]},
+            {"parent":3,"at":0.69,"radius":0.54,"foliageFrom":0.3,"points":[[0.54,-0.43,0.67],[0.73,-0.39,0.72],[0.8,-0.33,0.68]]},
+            {"parent":4,"at":0.58,"radius":0.61,"foliageFrom":0.23,"points":[[-0.27,0.67,0.64],[-0.17,0.78,0.73],[-0.07,0.89,0.69]]},
+            {"parent":4,"at":0.44,"radius":0.67,"foliageFrom":0.28,"points":[[-0.39,0.38,0.56],[-0.51,0.43,0.71],[-0.64,0.53,0.73]]},
+            {"parent":2,"at":0.62,"radius":0.62,"foliageFrom":0.24,"points":[[0.04,0.33,0.78],[0.08,0.52,0.85],[0.18,0.59,0.81]]},
+            {"parent":0,"at":0.68,"radius":0.64,"foliageFrom":0.28,"points":[[-0.66,-0.04,0.53],[-0.72,0.03,0.69],[-0.68,0.05,0.79]]},
+            {"parent":1,"at":0.6,"radius":0.61,"foliageFrom":0.23,"points":[[0.47,0.3,0.73],[0.64,0.24,0.82],[0.74,0.26,0.86]]},
+            {"parent":3,"at":0.43,"radius":0.59,"foliageFrom":0.26,"points":[[0.28,-0.37,0.52],[0.36,-0.5,0.63],[0.48,-0.63,0.65]]},
+            {"parent":0,"at":0.45,"radius":0.51,"foliageFrom":0.28,"points":[[-0.43,-0.22,0.48],[-0.41,-0.36,0.62],[-0.43,-0.4,0.74]]},
+            {"parent":2,"at":0.46,"radius":0.55,"foliageFrom":0.3,"points":[[-0.2,0.34,0.7],[-0.3,0.43,0.79],[-0.26,0.54,0.86]]},
+            {"parent":0,"at":0.58,"radius":0.25,"foliageFrom":1,"points":[[-0.59,-0.24,0.43],[-0.66,-0.33,0.39],[-0.71,-0.36,0.34]],"bare":true},
+            {"parent":0,"at":0.45,"radius":0.51,"foliageFrom":0.22,"points":[[-0.52,-0.24,0.41],[-0.66,-0.26,0.36],[-0.75,-0.31,0.33]]},
+            {"parent":3,"at":0.62,"radius":0.6,"foliageFrom":0.2,"points":[[0.43,-0.44,0.47],[0.59,-0.38,0.47],[0.76,-0.39,0.4],[0.86,-0.44,0.35]]},
+            {"parent":2,"at":0.41,"radius":0.64,"foliageFrom":0.18,"points":[[-0.14,-0.01,0.53],[-0.28,-0.14,0.58],[-0.36,-0.27,0.63]]},
+            {"parent":1,"at":0.3,"radius":0.45,"foliageFrom":0.26,"points":[[0.12,0.23,0.44],[0.18,0.37,0.49],[0.25,0.5,0.54]]},
+            {"parent":0,"at":0.36,"radius":0.48,"foliageFrom":0.21,"points":[[-0.41,-0.03,0.45],[-0.52,0.13,0.52],[-0.61,0.25,0.56]]},
+            {"parent":10,"at":0.8,"radius":0.63,"foliageFrom":0.2,"points":[[0.35,0.1,0.88],[0.45,0.08,0.95],[0.55,0.08,1]]},
+            {"parent":11,"at":0.73,"radius":0.53,"foliageFrom":0.19,"points":[[-0.3,0.1,0.88],[-0.36,0.07,0.96],[-0.43,0.07,0.98]]},
+            {"parent":4,"at":0.71,"radius":0.59,"foliageFrom":0.31,"points":[[-0.56,0.65,0.7],[-0.65,0.77,0.74],[-0.79,0.84,0.76]]},
+            {"parent":0,"at":0.67,"radius":0.52,"foliageFrom":0.2,"points":[[-0.72,-0.23,0.41],[-0.81,-0.3,0.35],[-0.94,-0.36,0.29]]},
+            {"parent":3,"at":0.56,"radius":0.5,"foliageFrom":0.17,"points":[[0.39,-0.47,0.43],[0.54,-0.54,0.34],[0.62,-0.55,0.28]]},
+            {"parent":12,"at":0.41,"radius":0.55,"foliageFrom":0.18,"points":[[-0.1,-0.18,0.62],[0.01,-0.25,0.63],[0.12,-0.35,0.65]]},
+            {"parent":2,"at":0.42,"radius":0.57,"foliageFrom":0.21,"points":[[-0.09,-0.1,0.55],[0.02,-0.19,0.56],[0.08,-0.28,0.5]]}
+          ]
+        }
+      }
+    },
+    "oak": {
+      "name": "Oak",
+      "presetLods": [{
+        "presets": ["estate", "estate-rounded"],
+        "levels": [
+          {"trunk":10,"limb":6,"side":3,"twig":0,"cards":1,"cardScale":1,"cardRows":1,"segStep":2,"sideMinM":0},
+          {"trunk":8,"limb":5,"side":3,"twig":0,"cards":0.59,"cardScale":1.26,"cardRows":1,"segStep":5,"sideMinM":3.2},
+          {"trunk":6,"limb":3,"side":0,"twig":0,"cards":0.36,"cardScale":1.48,"cardRows":1,"segStep":7,"sideMinM":0}
+        ]
+      }],
+      "materials": {
+        "bark": "GolfMap Oak Bark",
+        "leaves": "GolfMap Oak Leaves",
+        "barkTileM": 1.2,
+        "sprites": [
+          {"id": "branch", "rect": [0.0, 0.0, 0.83, 1.0], "base": [0.39, 0.0], "weight": 4},
+          {"id": "hanging", "rect": [0.75, 0.0, 1.0, 0.32], "base": [0.865, 0.32], "weight": 1}
+        ]
+      },
+      "unity": {
+        "bark": {"from": "M_Pine_trunk_03", "textures": {"_MainTex": "Oak Bark [Albedo] [Smoothness] tinted", "_DetailAlbedoMap": "Oak Bark [Albedo] [Smoothness] tinted"}, "colors": {"_Color": [1, 1, 1]}},
+        "leaves": {"from": "M_Pine_leaves", "textures": {"_MainTex": "Oak Branches [Albedo] [Alpha] tinted", "_AmbientOcclusionGSmoothnessA": "Oak Branches [AO] [Translucency] [Smoothness] nospec"}, "ctiNormals": {"_BumpMap": "Oak Branches [Normal] [Specular] nospec"}, "floats": {"_Cutoff": 0.25, "_SmoothnessPower": 0, "_SpecularPower": 0, "_AmbientOcclusionPower": 1}, "colors": {"_HealthyColor": [0.88, 0.88, 0.88], "_DryColor": [0.8, 0.8, 0.76]}}
+      },
+      "web": {"bark": "Oak Trees Package/Oak Trees Version 2.0/Sources/Shared Textures/Oak Bark [Albedo] [Smoothness].psd", "leaves": "Oak Trees Package/Oak Trees Version 2.0/Sources/Shared Textures/Oak Branches [Albedo] [Alpha].psd"},
+      "defaults": {
+        "heightM": 15,
+        "trunkRadiusM": 0.45,
+        "crownBase": 0.2,
+        "crownRadiusM": 8.5,
+        "wobbleM": 0.4,
+        "stubs": 0,
+        "stemEndsAt": 0.5,
+        "limbs": {"perNode": [1, 2, 2], "spacingBottomM": 0.9, "spacingTopM": 0.6, "topAt": 0.48, "elevBottomDeg": 30, "elevTopDeg": 65, "elevJitterDeg": 10, "sagBottom": 0.15, "sagTop": 0.1, "upturnBottom": 0.5, "upturnTop": 0.3, "crooked": 0.5, "topLength": 0.9},
+        "sides": {"startAt": 0.25, "spacingMinM": 0.6, "spacingMaxM": 1.6, "perNode": [1, 1, 2], "angleMinDeg": 30, "angleMaxDeg": 75, "lengthMin": 0.3, "lengthMax": 0.7, "upDown": 1, "crooked": 0.6},
+        "twigs": {"perM": 3.6, "angleMinDeg": 25, "angleMaxDeg": 80, "lengthMinM": 0.6, "lengthMaxM": 1.4},
+        "needles": {"limbTip": 5, "sideTip": 4, "twigTip": 3, "twigMid": 1, "sizeM": 2.4, "upward": 0.3, "scatter": 0.6}
+      },
+      "presets": {
+        "field": {},
+        "tall": {"heightM": 20, "crownBase": 0.35, "crownRadiusM": 7, "stemEndsAt": 0.6, "limbs": {"topAt": 0.58, "elevBottomDeg": 35}},
+        "estate": {
+          "ctiMaterials": {"bark": "CTITrial/CTI Oak Bark.mat", "leaves": ["CTITrial/CTI Oak Leaves.mat", "CTITrial/CTI Oak Leaves LOD1.mat", "CTITrial/CTI Oak Leaves LOD2.mat"]},
+          "heightM": 23, "crownRadiusM": 15, "trunkRadiusM": 0.94, "crownBase": 0.085, "stemEndsAt": 0.30,
+          "stemPath": [[0,0,0],[-0.014,0.008,0.33],[0.016,0.014,0.65],[-0.023,0.025,1]],
+          "guideWanderM": 0.28,
+          "sides": {"spacingMinM": 0.43, "spacingMaxM": 0.94, "lengthMin": 0.22, "lengthMax": 0.62, "upDown": 0.52, "crooked": 0.74, "droop": 0.04},
+          "twigs": {"perM": 3.1, "lengthMinM": 0.36, "lengthMaxM": 0.98},
+          "needles": {"limbTip": 5, "sideTip": 4, "twigTip": 4, "twigMid": 1, "sizeM": 1.7, "upward": 0.20, "scatter": 0.77, "innerShade": 0.30},
+          "boughGuides": [
+            {"parent":-1,"at":0.28,"radius":0.59,"foliageFrom":0.55,"colliderTo":0.62,"points":[[-0.179,-0.016,0.18],[-0.383,-0.147,0.23],[-0.66,-0.116,0.19],[-0.988,-0.21,0.165]]},
+            {"parent":0,"at":0.46,"radius":0.74,"foliageFrom":0.26,"points":[[-0.486,-0.258,0.3],[-0.607,-0.457,0.34],[-0.669,-0.602,0.3]]},
+            {"parent":0,"at":0.65,"radius":0.59,"foliageFrom":0.29,"points":[[-0.76,0,0.23],[-0.941,0.132,0.205]]},
+            {"parent":-1,"at":0.42,"radius":0.5,"foliageFrom":0.55,"colliderTo":0.62,"points":[[-0.04,-0.175,0.18],[-0.199,-0.359,0.23],[-0.207,-0.637,0.19],[-0.318,-0.874,0.2]]},
+            {"parent":3,"at":0.46,"radius":0.74,"foliageFrom":0.26,"points":[[-0.323,-0.445,0.3],[-0.537,-0.537,0.34],[-0.689,-0.579,0.328]]},
+            {"parent":3,"at":0.65,"radius":0.59,"foliageFrom":0.29,"points":[[-0.106,-0.753,0.23],[0,-0.95,0.24]]},
+            {"parent":-1,"at":0.36,"radius":0.59,"foliageFrom":0.55,"colliderTo":0.62,"points":[[0.098,-0.151,0.18],[0.309,-0.269,0.23],[0.412,-0.528,0.19],[0.604,-0.72,0.145]]},
+            {"parent":6,"at":0.46,"radius":0.74,"foliageFrom":0.26,"points":[[0.456,-0.308,0.3],[0.689,-0.321,0.34],[0.846,-0.308,0.356]]},
+            {"parent":6,"at":0.65,"radius":0.59,"foliageFrom":0.29,"points":[[0.357,-0.671,0.23],[0.325,-0.893,0.185]]},
+            {"parent":-1,"at":0.39,"radius":0.5,"foliageFrom":0.55,"colliderTo":0.62,"points":[[0.173,0.05,0.18],[0.41,0,0.23],[0.658,0.128,0.19],[1.017,0.161,0.155]]},
+            {"parent":9,"at":0.46,"radius":0.74,"foliageFrom":0.26,"points":[[0.546,-0.067,0.3],[0.731,-0.209,0.34],[0.84,-0.323,0.3]]},
+            {"parent":9,"at":0.65,"radius":0.59,"foliageFrom":0.29,"points":[[0.71,0.272,0.23],[0.831,0.461,0.195]]},
+            {"parent":-1,"at":0.48,"radius":0.59,"foliageFrom":0.55,"colliderTo":0.62,"points":[[0.067,0.167,0.18],[0.043,0.408,0.23],[0.196,0.641,0.19],[0.233,0.869,0.205]]},
+            {"parent":12,"at":0.46,"radius":0.74,"foliageFrom":0.26,"points":[[-0.01,0.55,0.3],[-0.132,0.748,0.34],[-0.233,0.869,0.328]]},
+            {"parent":12,"at":0.65,"radius":0.59,"foliageFrom":0.29,"points":[[0.345,0.677,0.23],[0.545,0.778,0.245]]},
+            {"parent":-1,"at":0.46,"radius":0.5,"foliageFrom":0.55,"colliderTo":0.62,"points":[[-0.136,0.118,0.18],[-0.223,0.344,0.23],[-0.465,0.482,0.19],[-0.636,0.706,0.18]]},
+            {"parent":15,"at":0.46,"radius":0.74,"foliageFrom":0.26,"points":[[-0.241,0.494,0.3],[-0.222,0.727,0.34],[-0.187,0.88,0.356]]},
+            {"parent":15,"at":0.65,"radius":0.59,"foliageFrom":0.29,"points":[[-0.615,0.447,0.23],[-0.839,0.446,0.22]]},
+            {"parent":-1,"at":0.57,"radius":0.66,"foliageFrom":0.49,"colliderTo":0.43,"points":[[-0.148,-0.06,0.355],[-0.28,-0.227,0.46],[-0.494,-0.285,0.49],[-0.701,-0.405,0.51]]},
+            {"parent":18,"at":0.47,"radius":0.71,"foliageFrom":0.29,"points":[[-0.445,-0.18,0.57],[-0.624,-0.088,0.65],[-0.61,0,0.69]]},
+            {"parent":-1,"at":0.7,"radius":0.66,"foliageFrom":0.49,"colliderTo":0.43,"points":[[0.041,-0.155,0.355],[-0.013,-0.36,0.46],[0.069,-0.566,0.49],[0.1,-0.814,0.54]]},
+            {"parent":20,"at":0.47,"radius":0.71,"foliageFrom":0.29,"points":[[0.124,-0.464,0.57],[0.305,-0.551,0.65],[0.367,-0.487,0.715]]},
+            {"parent":-1,"at":0.6,"radius":0.66,"foliageFrom":0.49,"colliderTo":0.43,"points":[[0.148,-0.06,0.355],[0.359,-0.031,0.46],[0.553,-0.138,0.49],[0.854,-0.213,0.5]]},
+            {"parent":22,"at":0.47,"radius":0.71,"foliageFrom":0.29,"points":[[0.445,-0.18,0.57],[0.51,-0.37,0.65],[0.439,-0.424,0.69]]},
+            {"parent":-1,"at":0.69,"radius":0.66,"foliageFrom":0.49,"colliderTo":0.43,"points":[[0.082,0.137,0.355],[0.268,0.241,0.46],[0.359,0.443,0.49],[0.503,0.622,0.56]]},
+            {"parent":24,"at":0.47,"radius":0.71,"foliageFrom":0.29,"points":[[0.247,0.411,0.57],[0.184,0.602,0.65],[0.095,0.602,0.715]]},
+            {"parent":-1,"at":0.76,"radius":0.66,"foliageFrom":0.49,"colliderTo":0.43,"points":[[-0.063,0.147,0.355],[-0.231,0.276,0.46],[-0.294,0.489,0.49],[-0.402,0.669,0.57]]},
+            {"parent":26,"at":0.47,"radius":0.71,"foliageFrom":0.29,"points":[[-0.188,0.442,0.57],[-0.099,0.622,0.65],[-0.011,0.61,0.69]]},
+            {"parent":-1,"at":0.85,"radius":0.66,"foliageFrom":0.49,"colliderTo":0.43,"points":[[-0.16,-0.006,0.355],[-0.348,0.093,0.46],[-0.567,0.06,0.49],[-0.716,0.075,0.59]]},
+            {"parent":28,"at":0.47,"radius":0.71,"foliageFrom":0.29,"points":[[-0.48,-0.017,0.57],[-0.606,-0.174,0.65],[-0.557,-0.248,0.715]]},
+            {"parent":-1,"at":1,"radius":0.98,"foliageFrom":0.49,"colliderTo":0.55,"points":[[-0.104,0.06,0.48],[-0.218,0.031,0.63],[-0.17,-0.059,0.77],[-0.136,-0.102,0.89]]},
+            {"parent":30,"at":0.34,"radius":0.73,"foliageFrom":0.38,"points":[[0.021,-0.199,0.62],[0.088,-0.308,0.76],[0.199,-0.237,0.82]]},
+            {"parent":30,"at":0.57,"radius":0.66,"foliageFrom":0.31,"points":[[-0.031,0.218,0.73],[-0.15,0.338,0.82],[-0.146,0.362,0.8]]},
+            {"parent":-1,"at":0.83,"radius":0.79,"foliageFrom":0.48,"colliderTo":0.5,"points":[[0.136,0.102,0.45],[0.253,0.058,0.62],[0.126,0.168,0.78],[0.075,0.08,0.87]]},
+            {"parent":33,"at":0.46,"radius":0.69,"foliageFrom":0.28,"points":[[0.373,0.073,0.68],[0.466,-0.057,0.78],[0.437,-0.109,0.79]]},
+            {"parent":33,"at":0.66,"radius":0.63,"foliageFrom":0.32,"points":[[0.131,0.281,0.76],[0.237,0.394,0.78]]}
+          ]
+        },
+        "estate-rounded": {
+          "ctiMaterials": {"bark": "CTITrial/CTI Oak Bark.mat", "leaves": ["CTITrial/CTI Oak Leaves.mat", "CTITrial/CTI Oak Leaves LOD1.mat", "CTITrial/CTI Oak Leaves LOD2.mat"]},
+          "heightM": 23, "crownRadiusM": 15, "trunkRadiusM": 0.94, "crownBase": 0.085, "stemEndsAt": 0.30,
+          "stemPath": [[0,0,0],[-0.014,0.008,0.33],[0.016,0.014,0.65],[-0.023,0.025,1]],
+          "guideWanderM": 0.25,
+          "sides": {"spacingMinM": 0.45, "spacingMaxM": 0.98, "lengthMin": 0.23, "lengthMax": 0.56, "upDown": 0.59, "crooked": 0.66, "droop": 0.04},
+          "twigs": {"perM": 2.85, "lengthMinM": 0.36, "lengthMaxM": 0.96},
+          "needles": {"limbTip": 5, "sideTip": 4, "twigTip": 4, "twigMid": 1, "sizeM": 1.68, "upward": 0.22, "scatter": 0.75, "innerShade": 0.30, "ball": 1.00, "ballHeight": 0.78},
+          "boughGuides": [
+            {"parent":-1,"at":0.285,"radius":0.55,"foliageFrom":0.48,"colliderTo":0.57,"points":[[-0.148,-0.023,0.155],[-0.336,-0.129,0.227],[-0.602,-0.184,0.209],[-0.917,-0.229,0.19]]},
+            {"parent":0,"at":0.4,"radius":0.66,"foliageFrom":0.3,"colliderTo":0.24,"points":[[-0.445,-0.18,0.256],[-0.6,-0.361,0.348],[-0.724,-0.526,0.411]]},
+            {"parent":0,"at":0.61,"radius":0.58,"foliageFrom":0.24,"points":[[-0.7,-0.024,0.243],[-0.854,0.105,0.305],[-0.913,0.194,0.293]]},
+            {"parent":-1,"at":0.37,"radius":0.55,"foliageFrom":0.48,"colliderTo":0.57,"points":[[-0.044,-0.143,0.192],[-0.175,-0.315,0.264],[-0.266,-0.571,0.246],[-0.339,-0.839,0.225]]},
+            {"parent":3,"at":0.4,"radius":0.66,"foliageFrom":0.3,"colliderTo":0.24,"points":[[-0.116,-0.466,0.293],[-0.061,-0.697,0.385],[0,-0.895,0.448]]},
+            {"parent":3,"at":0.61,"radius":0.58,"foliageFrom":0.24,"points":[[-0.391,-0.58,0.28],[-0.587,-0.629,0.342],[-0.693,-0.624,0.33]]},
+            {"parent":-1,"at":0.44,"radius":0.55,"foliageFrom":0.48,"colliderTo":0.57,"points":[[0.056,-0.139,0.159],[0.201,-0.298,0.231],[0.315,-0.546,0.213],[0.414,-0.813,0.208]]},
+            {"parent":6,"at":0.4,"radius":0.66,"foliageFrom":0.3,"colliderTo":0.24,"points":[[0.275,-0.393,0.26],[0.486,-0.504,0.352],[0.675,-0.587,0.415]]},
+            {"parent":6,"at":0.61,"radius":0.58,"foliageFrom":0.24,"points":[[0.181,-0.676,0.247],[0.09,-0.855,0.309],[0.016,-0.933,0.297]]},
+            {"parent":-1,"at":0.34,"radius":0.55,"foliageFrom":0.48,"colliderTo":0.57,"points":[[0.145,-0.039,0.185],[0.36,-0.019,0.257],[0.625,-0.077,0.239],[0.952,-0.168,0.22]]},
+            {"parent":9,"at":0.4,"radius":0.66,"foliageFrom":0.3,"colliderTo":0.24,"points":[[0.48,-0.017,0.286],[0.695,0.085,0.378],[0.875,0.186,0.441]]},
+            {"parent":9,"at":0.61,"radius":0.58,"foliageFrom":0.24,"points":[[0.649,-0.262,0.273],[0.737,-0.443,0.335],[0.755,-0.548,0.323]]},
+            {"parent":-1,"at":0.47,"radius":0.55,"foliageFrom":0.48,"colliderTo":0.57,"points":[[0.1,0.111,0.157],[0.291,0.212,0.229],[0.483,0.405,0.211],[0.684,0.638,0.202]]},
+            {"parent":12,"at":0.4,"radius":0.66,"foliageFrom":0.3,"colliderTo":0.24,"points":[[0.302,0.373,0.258],[0.35,0.606,0.35],[0.378,0.811,0.413]]},
+            {"parent":12,"at":0.61,"radius":0.58,"foliageFrom":0.24,"points":[[0.6,0.361,0.245],[0.797,0.322,0.307],[0.892,0.273,0.295]]},
+            {"parent":-1,"at":0.49,"radius":0.55,"foliageFrom":0.48,"colliderTo":0.57,"points":[[-0.008,0.15,0.179],[-0.093,0.348,0.251],[-0.12,0.618,0.233],[-0.125,0.891,0.226]]},
+            {"parent":15,"at":0.4,"radius":0.66,"foliageFrom":0.3,"colliderTo":0.24,"points":[[-0.132,0.461,0.28],[-0.296,0.634,0.372],[-0.447,0.775,0.435]]},
+            {"parent":15,"at":0.61,"radius":0.58,"foliageFrom":0.24,"points":[[0.049,0.698,0.267],[0.193,0.838,0.329],[0.288,0.887,0.317]]},
+            {"parent":-1,"at":0.4,"radius":0.55,"foliageFrom":0.48,"colliderTo":0.57,"points":[[-0.135,0.066,0.177],[-0.284,0.222,0.249],[-0.522,0.352,0.231],[-0.804,0.483,0.195]]},
+            {"parent":18,"at":0.4,"radius":0.66,"foliageFrom":0.3,"colliderTo":0.24,"points":[[-0.442,0.188,0.278],[-0.679,0.169,0.37],[-0.884,0.14,0.433]]},
+            {"parent":18,"at":0.61,"radius":0.58,"foliageFrom":0.24,"points":[[-0.512,0.477,0.265],[-0.529,0.678,0.327],[-0.508,0.782,0.315]]},
+            {"parent":-1,"at":0.62,"radius":0.64,"foliageFrom":0.44,"colliderTo":0.43,"points":[[-0.162,-0.079,0.35],[-0.276,-0.215,0.445],[-0.445,-0.387,0.469],[-0.68,-0.459,0.544]]},
+            {"parent":21,"at":0.46,"radius":0.71,"foliageFrom":0.26,"points":[[-0.314,-0.293,0.569],[-0.326,-0.418,0.651],[-0.321,-0.495,0.694]]},
+            {"parent":-1,"at":0.78,"radius":0.64,"foliageFrom":0.44,"colliderTo":0.43,"points":[[0.013,-0.18,0.35],[-0.049,-0.347,0.445],[-0.113,-0.579,0.533],[-0.054,-0.773,0.608]]},
+            {"parent":23,"at":0.46,"radius":0.71,"foliageFrom":0.26,"points":[[0.037,-0.428,0.633],[0.128,-0.514,0.715],[0.192,-0.558,0.758]]},
+            {"parent":-1,"at":0.57,"radius":0.64,"foliageFrom":0.44,"colliderTo":0.43,"points":[[0.127,-0.127,0.35],[0.294,-0.191,0.445],[0.511,-0.295,0.479],[0.667,-0.503,0.554]]},
+            {"parent":25,"at":0.46,"radius":0.71,"foliageFrom":0.26,"points":[[0.38,-0.202,0.579],[0.501,-0.173,0.661],[0.572,-0.143,0.704]]},
+            {"parent":-1,"at":0.67,"radius":0.64,"foliageFrom":0.44,"colliderTo":0.43,"points":[[0.169,0.062,0.35],[0.347,0.049,0.445],[0.588,0.051,0.515],[0.791,0.168,0.59]]},
+            {"parent":27,"at":0.46,"radius":0.71,"foliageFrom":0.26,"points":[[0.401,0.154,0.615],[0.459,0.265,0.697],[0.483,0.338,0.74]]},
+            {"parent":-1,"at":0.76,"radius":0.64,"foliageFrom":0.44,"colliderTo":0.43,"points":[[0.09,0.156,0.35],[0.108,0.333,0.445],[0.153,0.57,0.501],[0.294,0.728,0.576]]},
+            {"parent":29,"at":0.46,"radius":0.71,"foliageFrom":0.26,"points":[[0.097,0.419,0.601],[0.037,0.529,0.683],[-0.01,0.59,0.726]]},
+            {"parent":-1,"at":0.71,"radius":0.64,"foliageFrom":0.44,"colliderTo":0.43,"points":[[-0.116,0.138,0.35],[-0.164,0.309,0.445],[-0.249,0.535,0.481],[-0.432,0.692,0.556]]},
+            {"parent":31,"at":0.46,"radius":0.71,"foliageFrom":0.26,"points":[[-0.282,0.325,0.581],[-0.406,0.341,0.663],[-0.483,0.338,0.706]]},
+            {"parent":-1,"at":0.84,"radius":0.64,"foliageFrom":0.44,"colliderTo":0.43,"points":[[-0.18,-0.009,0.35],[-0.346,0.055,0.445],[-0.577,0.123,0.539],[-0.77,0.067,0.614]]},
+            {"parent":33,"at":0.46,"radius":0.71,"foliageFrom":0.26,"points":[[-0.429,-0.03,0.639],[-0.516,-0.119,0.721],[-0.561,-0.182,0.764]]},
+            {"parent":-1,"at":1,"radius":0.95,"foliageFrom":0.46,"colliderTo":0.54,"points":[[-0.064,0.066,0.477],[-0.162,0.031,0.64],[-0.17,-0.046,0.772],[-0.097,-0.073,0.881]]},
+            {"parent":35,"at":0.4,"radius":0.71,"foliageFrom":0.28,"points":[[-0.044,0.205,0.69],[-0.165,0.274,0.775],[-0.276,0.267,0.818]]},
+            {"parent":35,"at":0.55,"radius":0.62,"foliageFrom":0.32,"points":[[-0.048,-0.194,0.735],[-0.018,-0.34,0.794],[0.038,-0.358,0.825]]},
+            {"parent":-1,"at":0.86,"radius":0.77,"foliageFrom":0.48,"colliderTo":0.49,"points":[[0.113,0.082,0.47],[0.212,0.045,0.621],[0.1,0.111,0.76],[0.048,0.087,0.873]]},
+            {"parent":38,"at":0.43,"radius":0.66,"foliageFrom":0.27,"points":[[0.3,0.005,0.688],[0.315,-0.127,0.79],[0.287,-0.159,0.831]]},
+            {"parent":38,"at":0.6,"radius":0.65,"foliageFrom":0.3,"points":[[0.147,0.226,0.738],[0.086,0.344,0.794],[0.03,0.341,0.833]]}
+          ]
+        }
+      }
+    },
+    "birch": {
+      "name": "Birch",
+      "materials": {
+        "bark": "GolfMap Birch Bark",
+        "leaves": "GolfMap Birch Leaves",
+        "barkTileM": 1.6,
+        "sprites": [
+          {"id": "bough", "rect": [0.02, 0.06, 0.74, 0.92], "base": [0.735, 0.895], "weight": 3, "hang": true},
+          {"id": "twig", "rect": [0.74, 0.07, 0.98, 0.76], "base": [0.865, 0.745], "weight": 4, "hang": true}
+        ]
+      },
+      "unity": {
+        "bark": {"from": "M_Pine_trunk_03", "textures": {"_MainTex": "Birch Bark 1 upper [Albedo] [Smoothness] 2K4K", "_DetailAlbedoMap": "Birch Bark 1 upper [Albedo] [Smoothness] 2K4K"}, "colors": {"_Color": [0.7, 0.7, 0.68]}},
+        "leaves": {"from": "M_Pine_leaves", "textures": {"_MainTex": "Birch Leaves [Albedo] [Alpha] 4K tinted", "_AmbientOcclusionGSmoothnessA": "Birch Leaves [AO] [Trans] [Smoothness] 4K nospec"}, "ctiNormals": {"_BumpMap": "Birch Leaves [Normal] [Spec] 4K nospec"}, "floats": {"_Cutoff": 0.25, "_SmoothnessPower": 0, "_SpecularPower": 0, "_AmbientOcclusionPower": 1}, "colors": {"_HealthyColor": [1.05, 1.07, 1.08], "_DryColor": [0.97, 1.0, 0.93]}}
+      },
+      "web": {"bark": "Birch Trees Package/Birches Version 3.0/Sources/Shared Textures/Birch Bark 1 upper [Albedo] [Smoothness] 2K4K.psd", "leaves": "Birch Trees Package/Birches Version 3.0/Sources/Shared Textures/Birch Leaves [Albedo] [Alpha] 4K.psd"},
+      "defaults": {
+        "heightM": 17,
+        "trunkRadiusM": 0.17,
+        "crownBase": 0.3,
+        "crownRadiusM": 4.4,
+        "wobbleM": 0.25,
+        "stubs": 0,
+        "stemEndsAt": 0.9,
+        "limbs": {"perNode": [1, 2, 2], "spacingBottomM": 0.75, "spacingTopM": 0.5, "topAt": 0.88, "elevBottomDeg": 35, "elevTopDeg": 62, "elevJitterDeg": 9, "sagBottom": 0.5, "sagTop": 0.25, "upturnBottom": -1.8, "upturnTop": -1.1, "crooked": 0.35, "topLength": 0.4},
+        "sides": {"startAt": 0.2, "spacingMinM": 0.4, "spacingMaxM": 1.1, "perNode": [1, 2, 2], "angleMinDeg": 25, "angleMaxDeg": 60, "lengthMin": 0.25, "lengthMax": 0.6, "upDown": 0.8, "crooked": 0.5, "droop": 0.9},
+        "twigs": {"perM": 2.6, "angleMinDeg": 25, "angleMaxDeg": 70, "lengthMinM": 0.3, "lengthMaxM": 0.8},
+        "needles": {"limbTip": 2, "sideTip": 2, "twigTip": 1, "twigMid": 1, "sizeM": 1.9, "upward": 0.3, "scatter": 0.7}
+      },
+      "presets": {
+        "field": {},
+        "slender": {"heightM": 20, "crownBase": 0.45, "crownRadiusM": 3.2, "limbs": {"elevBottomDeg": 45, "elevTopDeg": 68}, "sides": {"droop": 0.7}}
+      }
+    },
+    "spruce": {
+      "name": "Spruce",
+      "materials": {
+        "bark": "M_Fir_Bark_01",
+        "leaves": "M_Fir_Leaves",
+        "barkTileM": 1.2,
+        "sprites": [
+          {"id": "bough-a", "rect": [0.05, 0.5, 0.36, 0.99], "base": [0.21, 0.98], "weight": 3, "hang": true},
+          {"id": "bough-b", "rect": [0.52, 0.55, 0.9, 0.99], "base": [0.725, 0.98], "weight": 3, "hang": true},
+          {"id": "bough-c", "rect": [0.39, 0.1, 0.67, 0.46], "base": [0.55, 0.455], "weight": 2, "hang": true},
+          {"id": "spray-a", "rect": [0.05, 0.5, 0.36, 0.99], "base": [0.21, 0.98], "weight": 3, "along": true},
+          {"id": "spray-b", "rect": [0.52, 0.55, 0.9, 0.99], "base": [0.725, 0.98], "weight": 3, "along": true},
+          {"id": "sprig-a", "rect": [0.36, 0.48, 0.5, 0.67], "base": [0.445, 0.485], "weight": 2},
+          {"id": "sprig-b", "rect": [0.64, 0.4, 0.77, 0.53], "base": [0.705, 0.4], "weight": 1}
+        ]
+      },
+      "unity": {
+        "bark": {"from": "M_Fir_Bark_01"},
+        "leaves": {"from": "M_Fir_Leaves", "colors": {"_HealthyColor": [0.76, 0.8, 0.62], "_DryColor": [0.7, 0.74, 0.56]}}
+      },
+      "web": {"bark": "NatureManufacture Assets/Dynamic Nature - Mountain Tree Pack/Models/Textures/T_Fir_bark_01_BC.tga", "barkNormal": "NatureManufacture Assets/Dynamic Nature - Mountain Tree Pack/Models/Textures/T_fir_bark_01_N.tga", "leaves": "NatureManufacture Assets/Dynamic Nature - Mountain Tree Pack/Models/Textures/T_Fir_leaves_BC_T.TGA"},
+      "defaults": {
+        "heightM": 22,
+        "trunkRadiusM": 0.26,
+        "crownBase": 0.12,
+        "crownRadiusM": 4.3,
+        "wobbleM": 0.05,
+        "stubs": 0,
+        "stemEndsAt": 1,
+        "limbs": {"perNode": [3, 3, 4], "spacingBottomM": 0.6, "spacingTopM": 0.38, "topAt": 0.97, "elevBottomDeg": -8, "elevTopDeg": 30, "elevJitterDeg": 6, "sagBottom": 0.5, "sagTop": 0.1, "upturnBottom": 1.0, "upturnTop": 0.3, "crooked": 0.15, "topLength": 0.08, "taper": 1.1, "minLengthM": 0.35},
+        "sides": {"startAt": 0.3, "spacingMinM": 0.6, "spacingMaxM": 1.3, "perNode": [1, 2], "angleMinDeg": 30, "angleMaxDeg": 60, "lengthMin": 0.2, "lengthMax": 0.4, "upDown": 0.2, "crooked": 0.2, "droop": 0.5},
+        "twigs": {"perM": 1.2, "angleMinDeg": 25, "angleMaxDeg": 70, "lengthMinM": 0.2, "lengthMaxM": 0.5},
+        "needles": {"limbTip": 3, "sideTip": 2, "twigTip": 1, "twigMid": 0, "sizeM": 1.3, "upward": 0.1, "scatter": 0.45, "shrinkTop": 0.8}
+      },
+      "presets": {
+        "full": {},
+        "forest": {"heightM": 26, "crownBase": 0.4, "crownRadiusM": 3.0, "stubs": 8}
+      }
+    },
+    "juniper": {
+      "name": "Juniper",
+      "materials": {
+        "bark": "GolfMap Juniper Bark",
+        "leaves": "GolfMap Juniper Leaves",
+        "barkTileM": 0.6,
+        "sprites": [
+          {"id": "sprig-a", "rect": [0.36, 0.48, 0.5, 0.67], "base": [0.445, 0.485], "weight": 4},
+          {"id": "sprig-b", "rect": [0.64, 0.4, 0.77, 0.53], "base": [0.705, 0.4], "weight": 3},
+          {"id": "sprig-c", "rect": [0.86, 0.48, 0.98, 0.6], "base": [0.885, 0.49], "weight": 3},
+          {"id": "spray-a", "rect": [0.05, 0.5, 0.36, 0.99], "base": [0.21, 0.98], "weight": 2, "along": true},
+          {"id": "spray-b", "rect": [0.52, 0.55, 0.9, 0.99], "base": [0.725, 0.98], "weight": 2, "along": true}
+        ]
+      },
+      "unity": {
+        "bark": {"from": "M_Fir_Bark_01"},
+        "leaves": {"from": "M_Fir_Leaves", "colors": {"_HealthyColor": [0.74, 0.8, 0.76], "_DryColor": [0.7, 0.74, 0.64]}}
+      },
+      "web": {"bark": "NatureManufacture Assets/Dynamic Nature - Mountain Tree Pack/Models/Textures/T_Fir_bark_01_BC.tga", "barkNormal": "NatureManufacture Assets/Dynamic Nature - Mountain Tree Pack/Models/Textures/T_fir_bark_01_N.tga", "leaves": "NatureManufacture Assets/Dynamic Nature - Mountain Tree Pack/Models/Textures/T_Fir_leaves_BC_T.TGA"},
+      "defaults": {
+        "heightM": 4,
+        "trunkRadiusM": 0.06,
+        "crownBase": 0.02,
+        "crownRadiusM": 1.15,
+        "wobbleM": 0.1,
+        "stubs": 0,
+        "stemEndsAt": 0.9,
+        "limbs": {"perNode": [2, 2, 3], "spacingBottomM": 0.8, "spacingTopM": 0.7, "topAt": 0.88, "elevBottomDeg": 28, "elevTopDeg": 80, "elevJitterDeg": 6, "sagBottom": 0, "sagTop": 0, "upturnBottom": 1.8, "upturnTop": 0.3, "crooked": 0.3, "topLength": 0.3, "taper": 1.6, "minLengthM": 1.2},
+        "sides": {"startAt": 0.05, "spacingMinM": 1.4, "spacingMaxM": 2.6, "perNode": [1, 2], "angleMinDeg": 12, "angleMaxDeg": 35, "lengthMin": 0.3, "lengthMax": 0.6, "upDown": 1, "crooked": 0.4, "droop": 0},
+        "twigs": {"perM": 1.0, "angleMinDeg": 15, "angleMaxDeg": 50, "lengthMinM": 0.5, "lengthMaxM": 1.2},
+        "needles": {"limbTip": 3, "sideTip": 3, "twigTip": 3, "twigMid": 1, "sizeM": 1.5, "upward": 0.7, "scatter": 0.45, "shrinkTop": 0.3}
+      },
+      "lods": [
+        {"trunk": 8, "limb": 4, "side": 3, "twig": 0, "cards": 1.0, "cardScale": 1.0, "cardRows": 1, "segStep": 2, "sideMinM": 0},
+        {"trunk": 6, "limb": 3, "side": 0, "twig": 0, "cards": 0.7, "cardScale": 1.18, "cardRows": 1, "segStep": 3, "sideMinM": 0},
+        {"trunk": 5, "limb": 3, "side": 0, "twig": 0, "cards": 0.45, "cardScale": 1.42, "cardRows": 1, "segStep": 4, "sideMinM": 0}
+      ],
+      "presets": {
+        "column": {},
+        "bush": {"heightM": 2.2, "crownRadiusM": 1.5, "stemEndsAt": 0.5, "wobbleM": 0.3, "limbs": {"perNode": [2, 3], "spacingBottomM": 1.2, "spacingTopM": 1.0, "topAt": 0.5, "elevBottomDeg": 12, "elevTopDeg": 65, "elevJitterDeg": 12, "topLength": 0.8, "taper": 2.5, "crooked": 0.5}, "sides": {"spacingMinM": 1.2, "spacingMaxM": 2.4}, "twigs": {"perM": 1.0}, "needles": {"sizeM": 2.6}}
+      }
+    },
+    "globe-willow": {
+      "name": "Globe willow",
+      "materials": {
+        "bark": "GolfMap Willow Bark",
+        "leaves": "GolfMap Globe Willow Leaves",
+        "barkTileM": 1.2,
+        "sprites": [
+          {"id": "boss-0", "rect": [0.0, 0.0, 0.3333, 0.38], "base": [0.1667, 0.0], "weight": 1},
+          {"id": "boss-1", "rect": [0.3333, 0.0, 0.6667, 0.38], "base": [0.5, 0.0], "weight": 1},
+          {"id": "boss-2", "rect": [0.6667, 0.0, 1.0, 0.38], "base": [0.8333, 0.0], "weight": 1}
+        ]
+      },
+      "unity": {
+        "bark": {"from": "M_Pine_trunk_03", "textures": {"_MainTex": "Oak Bark [Albedo] [Smoothness] tinted", "_DetailAlbedoMap": "Oak Bark [Albedo] [Smoothness] tinted"}, "colors": {"_Color": [1.5, 1.45, 1.35]}},
+        "leaves": {"from": "M_grey_willow", "ownTextures": {"_MainTex": "GolfMap Tree Atlas willow", "_BumpMap": ""}, "floats": {"_Cutoff": 0.3, "_SmoothnessPower": 0, "_SpecularPower": 0, "_AmbientOcclusionPower": 0}, "colors": {"_HealthyColor": [0.74, 0.8, 0.7], "_DryColor": [0.7, 0.75, 0.62]}}
+      },
+      "web": {"bark": "Oak Trees Package/Oak Trees Version 2.0/Sources/Shared Textures/Oak Bark [Albedo] [Smoothness].psd"},
+      "defaults": {
+        "heightM": 7,
+        "trunkRadiusM": 0.17,
+        "crownBase": 0.04,
+        "crownRadiusM": 3.2,
+        "wobbleM": 0.1,
+        "stubs": 0,
+        "stemEndsAt": 0.16,
+        "limbs": {"perNode": [3, 4], "spacingBottomM": 0.9, "spacingTopM": 0.9, "topAt": 0.16, "elevBottomDeg": 50, "elevTopDeg": 82, "elevJitterDeg": 8, "sagBottom": 0, "sagTop": 0, "upturnBottom": 0.6, "upturnTop": 0.3, "crooked": 0.35, "topLength": 0.72, "taper": 2.5, "minLengthM": 2.2},
+        "sides": {"startAt": 0.2, "spacingMinM": 0.4, "spacingMaxM": 0.8, "perNode": [2, 2, 3], "angleMinDeg": 30, "angleMaxDeg": 80, "lengthMin": 0.25, "lengthMax": 0.6, "upDown": 1, "crooked": 0.5, "droop": 0},
+        "twigs": {"perM": 4.5, "angleMinDeg": 25, "angleMaxDeg": 80, "lengthMinM": 0.4, "lengthMaxM": 1.0},
+        "needles": {"limbTip": 4, "sideTip": 3, "twigTip": 2, "twigMid": 2, "sizeM": 1.5, "upward": 0.2, "scatter": 1.0, "shrinkTop": 0, "outward": 0, "ball": 0.85, "lobe": 0, "hangReach": 0, "hangDrop": 1, "innerShade": 0.25, "ballBumps": 0.45, "shell": 0.6, "shingle": 1, "ballHeight": 0.8}
+      },
+      "lods": [
+        {"trunk": 8, "limb": 6, "side": 0, "twig": 0, "cards": 1.0, "cardScale": 1.0, "cardRows": 1, "segStep": 2, "sideMinM": 0},
+        {"trunk": 6, "limb": 5, "side": 0, "twig": 0, "cards": 0.6, "cardScale": 1.25, "cardRows": 1, "segStep": 3, "sideMinM": 0},
+        {"trunk": 5, "limb": 4, "side": 0, "twig": 0, "cards": 0.35, "cardScale": 1.6, "cardRows": 1, "segStep": 4, "sideMinM": 0}
+      ],
+      "presets": {
+        "stem": {"heightM": 8, "trunkRadiusM": 0.21, "crownBase": 0.2, "stemEndsAt": 0.32, "wobbleM": 0.25, "crownRadiusM": 3.5, "limbs": {"topAt": 0.32, "elevBottomDeg": 40, "elevTopDeg": 84, "elevJitterDeg": 10, "spacingBottomM": 0.6, "spacingTopM": 0.6, "crooked": 0.25, "topLength": 0.68}, "sides": {"lengthMax": 0.7, "angleMaxDeg": 88}, "needles": {"ball": 0.82, "ballHeight": 0.85, "sizeM": 1.5}},
+        "multi": {},
+        "tall": {"heightM": 11, "trunkRadiusM": 0.22, "crownBase": 0.05, "crownRadiusM": 5.2, "stemEndsAt": 0.2, "limbs": {"topAt": 0.2, "elevBottomDeg": 40, "elevTopDeg": 86, "elevJitterDeg": 8, "spacingBottomM": 0.6, "spacingTopM": 0.6, "topLength": 0.85, "taper": 1, "crooked": 0.3, "perNode": [3, 4], "upturnBottom": 0.8}, "sides": {"angleMinDeg": 30, "angleMaxDeg": 80, "startAt": 0.2, "lengthMin": 0.3, "lengthMax": 0.6}, "needles": {"ball": 0.75, "sizeM": 1.3, "scatter": 1.0, "ballHeight": 1.1}, "twigs": {}},
+        "stem-large": {"heightM": 11.5, "trunkRadiusM": 0.3, "crownBase": 0.2, "stemEndsAt": 0.32, "wobbleM": 0.3, "crownRadiusM": 5.0, "limbs": {"topAt": 0.32, "elevBottomDeg": 40, "elevTopDeg": 84, "elevJitterDeg": 10, "spacingBottomM": 0.6, "spacingTopM": 0.6, "crooked": 0.25, "topLength": 0.68}, "sides": {"lengthMax": 0.7, "angleMaxDeg": 88}, "needles": {"ball": 0.82, "ballHeight": 0.85, "sizeM": 1.3}}
+      },
+      "atlas": "willow"
+    },
+    "weeping-willow": {
+      "name": "Weeping willow",
+      "materials": {
+        "bark": "GolfMap Oak Bark",
+        "leaves": "GolfMap Weeping Willow Leaves",
+        "barkTileM": 1.2,
+        "sprites": [
+          {"id": "curtain-0", "rect": [0.0, 0.38, 0.25, 1.0], "base": [0.125, 1.0], "weight": 1, "hang": true},
+          {"id": "curtain-1", "rect": [0.25, 0.38, 0.5, 1.0], "base": [0.375, 1.0], "weight": 1, "hang": true},
+          {"id": "curtain-2", "rect": [0.5, 0.38, 0.75, 1.0], "base": [0.625, 1.0], "weight": 1, "hang": true},
+          {"id": "curtain-3", "rect": [0.75, 0.38, 1.0, 1.0], "base": [0.875, 1.0], "weight": 1, "hang": true}
+        ]
+      },
+      "unity": {
+        "bark": {"from": "M_Pine_trunk_03", "textures": {"_MainTex": "Oak Bark [Albedo] [Smoothness] tinted", "_DetailAlbedoMap": "Oak Bark [Albedo] [Smoothness] tinted"}, "colors": {"_Color": [1, 1, 1]}},
+        "leaves": {"from": "M_grey_willow", "ownTextures": {"_MainTex": "GolfMap Tree Atlas willow", "_BumpMap": ""}, "floats": {"_Cutoff": 0.3, "_SmoothnessPower": 0, "_SpecularPower": 0, "_AmbientOcclusionPower": 0}, "colors": {"_HealthyColor": [0.5, 0.56, 0.5], "_DryColor": [0.46, 0.5, 0.44]}}
+      },
+      "web": {"bark": "Oak Trees Package/Oak Trees Version 2.0/Sources/Shared Textures/Oak Bark [Albedo] [Smoothness].psd"},
+      "defaults": {
+        "heightM": 18,
+        "trunkRadiusM": 0.5,
+        "crownBase": 0.26,
+        "crownRadiusM": 7.5,
+        "wobbleM": 0.5,
+        "stubs": 0,
+        "stemEndsAt": 0.7,
+        "limbs": {"perNode": [1, 2, 2], "spacingBottomM": 0.8, "spacingTopM": 0.55, "topAt": 0.7, "elevBottomDeg": 25, "elevTopDeg": 55, "elevJitterDeg": 16, "sagBottom": 0, "sagTop": 0, "upturnBottom": 0.1, "upturnTop": 0.3, "crooked": 0.6, "topLength": 1.0, "spacingJitter": 0.6, "taper": 2.5, "minLengthM": 2.2},
+        "sides": {"startAt": 0.3, "spacingMinM": 0.6, "spacingMaxM": 1.3, "perNode": [1, 2, 2], "angleMinDeg": 35, "angleMaxDeg": 85, "lengthMin": 0.3, "lengthMax": 0.65, "upDown": 1, "crooked": 0.5, "droop": 0.25},
+        "twigs": {"perM": 2.0, "angleMinDeg": 25, "angleMaxDeg": 80, "lengthMinM": 0.5, "lengthMaxM": 1.2},
+        "needles": {"limbTip": 4, "sideTip": 4, "twigTip": 1, "twigMid": 1, "sizeM": 4.2, "upward": 0.3, "scatter": 1.1, "shrinkTop": 0, "outward": 0, "ball": 0, "lobe": 0, "alongPerM": 2.8, "hangTaper": 0.4, "hangReach": 0.22, "innerShade": 0.8}
+      },
+      "lods": [
+        {"trunk": 10, "limb": 6, "side": 3, "twig": 0, "cards": 1.0, "cardScale": 1.0, "cardRows": 5, "segStep": 2, "sideMinM": 0},
+        {"trunk": 8, "limb": 5, "side": 3, "twig": 0, "cards": 0.6, "cardScale": 1.25, "cardRows": 3, "segStep": 3, "sideMinM": 1.5},
+        {"trunk": 6, "limb": 4, "side": 0, "twig": 0, "cards": 0.35, "cardScale": 1.6, "cardRows": 2, "segStep": 4, "sideMinM": 0}
+      ],
+      "presets": {
+        "weeping": {}
+      },
+      "atlas": "willow"
+    }
+  }
+}

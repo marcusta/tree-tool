@@ -1,0 +1,7 @@
+{
+    "version": "0.0.1",
+    "configurations": [
+        { "name": "app", "runtimeExecutable": "bun", "runtimeArgs": ["run", "dev"], "port": 5190 },
+        { "name": "app-dist", "runtimeExecutable": "bun", "runtimeArgs": ["run", "preview", "--", "--port", "5191", "--strictPort"], "port": 5191 }
+    ]
+}

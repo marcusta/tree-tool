@@ -1,0 +1,8 @@
+{
+    "name": "@tree-tool/app",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+        "@tree-tool/trees": "workspace:*"
+    }
+}

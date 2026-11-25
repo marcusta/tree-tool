@@ -1,0 +1,107 @@
+{
+ "id": "nm-velvet-mesquite",
+ "label": "NatureManufacture: M_Pine_trunk_03 + M_Pine_leaves",
+ "channels": "nm",
+ "materials": {
+  "bark": {
+   "shader": {
+    "fileID": 4800000,
+    "guid": "88e05d1d051dbe14da3257013071561a",
+    "type": 3,
+    "name": "Tree_Bark_Metalic.shader"
+   },
+   "keywords": "_DETALUSEUV3_ON _NORMALMAP",
+   "renderQueue": -1,
+   "textures": {
+    "_BumpMap": null,
+    "_DetailAlbedoMap": null,
+    "_DetailMask": null,
+    "_DetailMetalicRAOGSmothnessA": null,
+    "_DetailNormalMap": null,
+    "_MainTex": null,
+    "_MetalicRAOGSmothnessA": null,
+    "_texcoord": null,
+    "_texcoord3": null
+   },
+   "floats": {
+    "_AmbientOcclusionPower": 0,
+    "_BumpScale": 1,
+    "_DetailNormalMapScale": 1,
+    "_DetalUseUV3": 1,
+    "_Drag": 0.1,
+    "_InitialBend": 1,
+    "_MetallicPower": 0,
+    "_SmoothnessPower": 0,
+    "_Stiffness": 0.93,
+    "_TouchReactActive": 0,
+    "__dirty": 1
+   },
+   "colors": {
+    "_Color": [
+     1,
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "leaves": {
+   "shader": {
+    "fileID": 4800000,
+    "guid": "a1c955eddea1e0f4e9c4673c479e80dc",
+    "type": 3,
+    "name": "Tree_Leaves_Specular.shader"
+   },
+   "keywords": "",
+   "renderQueue": -1,
+   "textures": {
+    "_AmbientOcclusionGSmoothnessA": null,
+    "_BumpMap": null,
+    "_MainTex": null,
+    "_texcoord": null
+   },
+   "floats": {
+    "_AmbientOcclusionPower": 0,
+    "_BackFaceMirrorNormal": 0,
+    "_ColorNoiseSpread": 6,
+    "_Cutoff": 0.3,
+    "_Drag": 0.1,
+    "_InitialBend": 1,
+    "_ShiverDirectionality": 0.93,
+    "_ShiverDrag": 0.02,
+    "_SmoothnessPower": 0,
+    "_SpecularPower": 0,
+    "_Stiffness": 0.93,
+    "_TouchReactActive": 0,
+    "_WindNormalInfluence": 0,
+    "__dirty": 1
+   },
+   "colors": {
+    "_DryColor": [
+     0.98,
+     0.96,
+     0.89,
+     0
+    ],
+    "_HealthyColor": [
+     1,
+     1,
+     1,
+     0
+    ]
+   }
+  }
+ },
+ "needs": [
+  {
+   "part": "bark",
+   "property": "_MainTex",
+   "what": "GolfMap Tree Atlas velvet-mesquite-bark.png (drawn by golf-map's pipeline/tree_atlas.py, in atlas/)"
+  },
+  {
+   "part": "leaves",
+   "property": "_MainTex",
+   "what": "GolfMap Tree Atlas velvet-mesquite.png (drawn by golf-map's pipeline/tree_atlas.py, in atlas/)"
+  }
+ ]
+}

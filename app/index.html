@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree tool</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; padding: 16px; font: 13px/1.4 system-ui, sans-serif; color: #111; background: #f6f6f3; }
+        main { max-width: 760px; display: flex; flex-direction: column; gap: 12px; }
+        h1 { font-size: 16px; margin: 0; }
+        h2 { font-size: 13px; margin: 0 0 4px; }
+        section { background: #fff; border: 1px solid #bbb; border-radius: 4px; padding: 10px 12px; }
+        .row { display: flex; align-items: center; gap: 8px; margin: 3px 0; flex-wrap: wrap; }
+        .label { width: 90px; flex-shrink: 0; }
+        button, select, input { font: inherit; }
+        button { padding: 3px 10px; background: #f2f2f2; border: 1px solid #555; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #e2e2e2; }
+        table { border-collapse: collapse; width: 100%; }
+        td, th { text-align: left; padding: 3px 6px 3px 0; vertical-align: top; border-top: 1px solid #e4e4e4; }
+        th { font-weight: 600; border-top: 0; }
+        .prop { font: 12px ui-monospace, monospace; }
+        .muted { color: #666; }
+        .need { color: #a33; }
+        .own { color: #1a6b2a; }
+        pre { margin: 0; font: 12px/1.5 ui-monospace, monospace; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Tree tool: a tree as a .unitypackage, built in your browser</h1>
+        <section data-testid="tree-section">
+            <h2>Tree</h2>
+            <div class="row"><span class="label">Species</span><select id="species"></select></div>
+            <div class="row"><span class="label">Preset</span><select id="preset"></select></div>
+            <div class="row"><span class="label">Seed</span><input id="seed" type="number" value="1" min="1" style="width: 80px"></div>
+            <div class="row"><span class="label">Prefab</span><label><input id="prefab" type="checkbox" checked> LODs and GSPro colliders</label></div>
+        </section>
+        <section data-testid="profile-section">
+            <h2>Shader and textures</h2>
+            <div class="row"><span class="label">Profile</span><span id="profile-label"></span></div>
+            <div class="row"><span class="label"></span><label class="muted">Your own shader: <input id="profile-file" type="file" accept=".json"></label></div>
+            <div id="slots"></div>
+        </section>
+        <section>
+            <div class="row"><button id="build" data-testid="build">Build package</button><span id="status" class="muted"></span></div>
+            <pre id="result" data-testid="result"></pre>
+        </section>
+    </main>
+    <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
