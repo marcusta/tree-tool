@@ -1,22 +1,67 @@
 {
     "name": "@tree-tool/trees",
-    "version": "0.1.0",
-    "description": "Procedural trees with LODs, and the FBX, Unity prefab and .unitypackage writers for them. TypeScript source, no dependencies: runs in Bun, Node and the browser.",
+    "version": "0.2.0",
+    "description": "Procedural trees with LODs, and the FBX, Unity prefab and .unitypackage writers for them. ES modules with type declarations, no dependencies: runs in Bun, Node and the browser.",
     "type": "module",
+    "scripts": {
+        "build": "bun build.ts",
+        "prepack": "bun build.ts"
+    },
     "exports": {
-        "./generator": "./generator.ts",
-        "./species": "./species.ts",
+        "./generator": {
+            "source": "./generator.ts",
+            "types": "./dist/generator.d.ts",
+            "default": "./dist/generator.js"
+        },
+        "./species": {
+            "source": "./species.ts",
+            "types": "./dist/species.d.ts",
+            "default": "./dist/species.js"
+        },
+        "./controls": {
+            "source": "./controls.ts",
+            "types": "./dist/controls.d.ts",
+            "default": "./dist/controls.js"
+        },
+        "./export-settings": {
+            "source": "./export-settings.ts",
+            "types": "./dist/export-settings.d.ts",
+            "default": "./dist/export-settings.js"
+        },
+        "./export/catalogue/nm": {
+            "source": "./export/catalogue/nm/index.ts",
+            "types": "./dist/export/catalogue/nm/index.d.ts",
+            "default": "./dist/export/catalogue/nm/index.js"
+        },
+        "./export/fbx": {
+            "source": "./export/fbx.ts",
+            "types": "./dist/export/fbx.d.ts",
+            "default": "./dist/export/fbx.js"
+        },
+        "./export/prefab": {
+            "source": "./export/prefab.ts",
+            "types": "./dist/export/prefab.d.ts",
+            "default": "./dist/export/prefab.js"
+        },
+        "./export/profiles": {
+            "source": "./export/profiles.ts",
+            "types": "./dist/export/profiles.d.ts",
+            "default": "./dist/export/profiles.js"
+        },
+        "./export/unity-package": {
+            "source": "./export/unity-package.ts",
+            "types": "./dist/export/unity-package.d.ts",
+            "default": "./dist/export/unity-package.js"
+        },
         "./species.json": "./species.json",
-        "./controls": "./controls.ts",
-        "./export-settings": "./export-settings.ts",
-        "./export/catalogue/nm": "./export/catalogue/nm/index.ts",
-        "./export/*": "./export/*.ts",
         "./atlas/*": "./atlas/*",
         "./shaders/*": "./shaders/*"
     },
     "files": [
+        "dist",
         "*.ts",
         "!*.test.ts",
+        "!build.ts",
         "species.json",
         "export",
         "atlas",

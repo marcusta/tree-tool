@@ -3,7 +3,12 @@
         "target": "ES2022",
         "module": "ESNext",
         "moduleResolution": "bundler",
-        "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
+        "lib": [
+            "ES2022",
+            "DOM",
+            "DOM.Iterable",
+            "WebWorker"
+        ],
         "strict": true,
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": true,
@@ -11,7 +16,22 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "noEmit": true,
-        "types": ["bun", "vite/client"]
+        "types": [
+            "bun",
+            "vite/client"
+        ],
+        "customConditions": [
+            "source"
+        ]
     },
-    "include": ["packages", "app/src", "app/vite.config.ts", "scripts"]
+    "include": [
+        "packages",
+        "app/src",
+        "app/vite.config.ts",
+        "scripts"
+    ],
+    "exclude": [
+        "**/dist",
+        "**/node_modules"
+    ]
 }

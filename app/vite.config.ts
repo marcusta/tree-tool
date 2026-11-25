@@ -1,9 +1,11 @@
-import { defineConfig } from 'vite';
+import { defaultClientConditions, defineConfig } from 'vite';
 
 // A static site: `bun run build` writes app/dist, which any static file server can serve under any path.
+// `source`: the package's TypeScript, not its built dist/, so a change there shows without building it.
 export default defineConfig({
     base: './',
     server: { port: 5190 },
+    resolve: { conditions: ['source', ...defaultClientConditions] },
     worker: { format: 'es' },
     build: { outDir: 'dist', emptyOutDir: true },
 });

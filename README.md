@@ -12,7 +12,7 @@ own picture in any texture slot, and it goes into the package. You can also load
 
 | Path | What |
 |---|---|
-| `packages/trees` | `@tree-tool/trees`: the generator, the species and presets, the FBX / prefab / `.unitypackage` writers, the shader catalogue. TypeScript source, no dependencies; runs in Bun, Node and the browser. |
+| `packages/trees` | `@tree-tool/trees`: the generator, the species and presets, the FBX / prefab / `.unitypackage` writers, the shader catalogue. TypeScript source, no dependencies; `bun run build:package` builds `dist/` (ES modules + declarations) for users outside the repo. The app reads the source (export condition `source`). |
 | `app` | The web page. A static site: `bun run build` writes `app/dist`. |
 | `scripts/package.ts` | The same build from the command line, and the catalogue builder. |
 

@@ -2,14 +2,18 @@
     "name": "tree-tool",
     "private": true,
     "type": "module",
-    "workspaces": ["packages/*", "app"],
+    "workspaces": [
+        "packages/*",
+        "app"
+    ],
     "scripts": {
         "dev": "cd app && bunx vite",
         "build": "cd app && bunx vite build",
         "preview": "cd app && bunx vite preview",
         "test": "bun test packages",
-        "typecheck": "tsc --noEmit -p .",
-        "package": "bun scripts/package.ts"
+        "typecheck": "tsc --noEmit -p . && cd packages/trees && bun run build",
+        "package": "bun scripts/package.ts",
+        "build:package": "cd packages/trees && bun run build"
     },
     "devDependencies": {
         "@types/bun": "^1",
