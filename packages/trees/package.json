@@ -13,5 +13,13 @@
         "./export/*": "./export/*.ts",
         "./atlas/*": "./atlas/*",
         "./shaders/*": "./shaders/*"
-    }
+    },
+    "files": [
+        "*.ts",
+        "!*.test.ts",
+        "species.json",
+        "export",
+        "atlas",
+        "shaders"
+    ]
 }
