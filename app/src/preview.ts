@@ -116,10 +116,11 @@ export function createPreview(canvas: HTMLCanvasElement, view: View, onView: () 
         tree.geometry = geometry;
     }
 
-    /** The whole tree in view. */
-    function frame(heightM: number): void {
+    /** The whole tree in view: its height, and its crown's reach on a narrow screen. */
+    function frame(heightM: number, reachM: number): void {
+        resize();
         view.targetZ = heightM * 0.48;
-        view.distanceM = Math.max(4, heightM * 2.3);
+        view.distanceM = Math.max(4, heightM * 2.3, reachM * 3.2 / Math.max(0.3, Math.min(1, camera.aspect)));
         view.pitchDeg = 8;
         onView();
     }

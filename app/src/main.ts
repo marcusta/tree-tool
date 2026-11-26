@@ -225,7 +225,14 @@ $('copy-link').onclick = async () => {
 
 /** Frame the whole tree once it is built. */
 function frameTree(): void {
-    requestAnimationFrame(() => requestAnimationFrame(() => { if (build) preview.frame(build.heightM); }));
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (build) preview.frame(build.heightM, reach(build)); }));
+}
+/** How far the tree reaches from its stem, metres. */
+function reach(b: TreeBuild): number {
+    const p = b.lods[b.lods.length - 1]!.positions;
+    let r = 0;
+    for (let i = 0; i < p.length; i += 3) r = Math.max(r, Math.hypot(p[i]!, p[i + 1]!));
+    return r;
 }
 
 // ---- shader and textures ----------------------------------------------------------------------------------------
@@ -467,7 +474,7 @@ $('share-check').onclick = async () => {
 /** The tree from the front, framed: the model's preview.png. */
 async function previewPicture(): Promise<Blob> {
     const saved = { ...view };
-    if (build) preview.frame(build.heightM);
+    if (build) preview.frame(build.heightM, reach(build));
     view.yawDeg = 20;
     try { return await preview.snapshot(768); } finally { Object.assign(view, saved); }
 }
