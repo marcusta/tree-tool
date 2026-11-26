@@ -7,5 +7,6 @@ export default defineConfig({
     server: { port: 5190 },
     resolve: { conditions: ['source', ...defaultClientConditions] },
     worker: { format: 'es' },
-    build: { outDir: 'dist', emptyOutDir: true },
+    // three.js in a chunk of its own: it changes less often than the page, so browsers keep it cached.
+    build: { outDir: 'dist', emptyOutDir: true, chunkSizeWarningLimit: 800, rollupOptions: { output: { manualChunks: { three: ['three'] } } } },
 });

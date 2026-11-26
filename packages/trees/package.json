@@ -1,6 +1,6 @@
 {
     "name": "@tree-tool/trees",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Procedural trees with LODs, and the FBX, Unity prefab and .unitypackage writers for them. ES modules with type declarations, no dependencies: runs in Bun, Node and the browser.",
     "type": "module",
     "scripts": {
@@ -27,6 +27,11 @@
             "source": "./export-settings.ts",
             "types": "./dist/export-settings.d.ts",
             "default": "./dist/export-settings.js"
+        },
+        "./models": {
+            "source": "./models.ts",
+            "types": "./dist/models.d.ts",
+            "default": "./dist/models.js"
         },
         "./export/catalogue/nm": {
             "source": "./export/catalogue/nm/index.ts",

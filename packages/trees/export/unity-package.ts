@@ -40,6 +40,16 @@ export function materialYaml(name: string, recipe: MaterialRecipe): string {
 const nativeMeta = (guid: string, mainObject = 2100000) =>
     `fileFormatVersion: 2\nguid: ${guid}\nNativeFormatImporter:\n  externalObjects: {}\n  mainObjectFileID: ${mainObject}\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n`;
 
+const textMeta = (guid: string) =>
+    `fileFormatVersion: 2
+guid: ${guid}
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+`;
+
 /** How a picture is used, which sets its import: colour (sRGB), cutout (sRGB, alpha kept through the mips so thin
  *  leaves do not vanish at a distance, as OwnTextures does today), normal map, or linear data (masks, smoothness). */
 export type TextureKind = 'color' | 'cutout' | 'normal' | 'linear';
@@ -154,6 +164,8 @@ export interface TreePackageInput {
     textures?: Partial<Record<'bark' | 'leaves', Record<string, OwnTexture | null>>>;
     /** The prefab with LODGroup and GSPro colliders (default true). */
     prefab?: boolean;
+    /** Who made the pictures the package carries and under which licence: written as CREDITS.txt beside the tree. */
+    credits?: string;
 }
 
 export interface TreePackage { filename: string; bytes: Uint8Array; fbxBytes: Uint8Array; paths: string[]; timings: Record<string, number> }
@@ -162,7 +174,7 @@ export interface TreePackage { filename: string; bytes: Uint8Array; fbxBytes: Ui
  *  and the prefab with LODs and colliders. */
 export async function treePackage(input: TreePackageInput): Promise<TreePackage> {
     const { id, build, profile } = input;
-    const folder = input.folder ?? `Assets/GolfMapTrees/${id}`;
+    const folder = input.folder ?? `Assets/TreeTool/${id}`;
     const lodHeights = input.lodHeights ?? [0.45, 0.18, 0.012];
     const t0 = performance.now();
     const names = { bark: `${id} bark`, leaves: `${id} leaves` };
@@ -192,6 +204,10 @@ export async function treePackage(input: TreePackageInput): Promise<TreePackage>
         const path = `${folder}/${id}.prefab`, guid = await guidFor(path);
         const yaml = prefabYaml({ id, build, fbxGuid, materials: [mats[0]!.guid, mats[1]!.guid], lodHeights });
         assets.push({ path, guid, asset: utf8.encode(yaml), meta: nativeMeta(guid, 100100000) });
+    }
+    if (input.credits) {
+        const path = `${folder}/CREDITS.txt`, guid = await guidFor(path);
+        assets.push({ path, guid, asset: utf8.encode(input.credits), meta: textMeta(guid) });
     }
     const bytes = await unityPackage(assets);
     const t2 = performance.now();

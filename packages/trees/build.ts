@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const dir = import.meta.dir;
 const ENTRIES = [
-    'generator.ts', 'species.ts', 'controls.ts', 'export-settings.ts',
+    'generator.ts', 'species.ts', 'controls.ts', 'export-settings.ts', 'models.ts',
     'export/fbx.ts', 'export/prefab.ts', 'export/profiles.ts', 'export/unity-package.ts', 'export/catalogue/nm/index.ts',
 ];
 

@@ -3,6 +3,10 @@
     "private": true,
     "type": "module",
     "dependencies": {
-        "@tree-tool/trees": "workspace:*"
+        "@tree-tool/trees": "workspace:*",
+        "three": "0.180.0"
+    },
+    "devDependencies": {
+        "@types/three": "0.180.0"
     }
 }

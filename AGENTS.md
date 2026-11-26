@@ -13,6 +13,9 @@ Procedural trees as `.unitypackage` files, built in the browser. Start with [REA
   are our own. Shared models live in the `tree-tool-models` repo, which states the same rule for contributors.
 - The package is used by golf-map (`D:\golf-map`): its tree editor, `scripts/trees.ts` and the Unity tree builds.
   A change to the generator's output changes golf-map's trees: say so in the commit.
+- `packages/trees/models.ts` and `scripts/models.ts` are the check every pull request to `tree-tool-models` runs (its
+  workflow checks out this repo's `main`). A stricter check can fail models already merged: run
+  `bun scripts/models.ts check ../tree-tool-models/models` before pushing a change to them.
 - The catalogue's `index.ts` is written by `bun run package -- catalogue`; when adding a profile by hand, add it there.
 - Everything in the repo is English. Chat with Marcus is in Swedish.
 - No `Co-Authored-By` lines in commits.
