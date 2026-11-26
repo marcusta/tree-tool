@@ -4,8 +4,9 @@ Procedural trees as Unity packages, built in the browser. Pick a species, a pres
 `.unitypackage` with the tree's FBX (LODs), its two materials, and a prefab with an LOD group and GSPro colliders.
 Nothing is uploaded: the tree, the FBX and the package are made in a web worker on your machine.
 
-No licensed file ships with the tool. A species' materials link to the shader and textures of the pack the tree is
-made for (NatureManufacture today) by GUID, so they resolve in a Unity project that has the pack. You can put your
+The tool ships only files whose licence allows passing them on (our own work, CC0, CC BY, CC BY-SA). Files from
+paid packs never ship: a species' materials link to the shader and textures of the pack the tree is made for
+(NatureManufacture today) by GUID, so they resolve in a Unity project that has the pack. You can put your
 own picture in any texture slot, and it goes into the package. You can also load a profile JSON for your own shader.
 
 ## Layout
@@ -30,7 +31,7 @@ bun run package -- catalogue --assets <Unity project with the packs>/Assets
 
 ## Deploy
 
-`app/dist` is plain files with relative paths (`base: './'`). Serve it from any static host or any path on the VPS.
+`app/dist` is plain files with relative paths (`base: './'`). Serve it from any static host or any path on the VPS; GitHub Pages serves it today.
 It makes no requests of its own.
 
 ## Shader catalogue
@@ -43,4 +44,10 @@ project that has the packs, together with its `index.ts`.
 ## Origin
 
 Split out of golf-map on 2026-11-25 (its `shared/trees` and the browser-export spike). golf-map's tree editor and its
-Unity tree builds use the same generator; they are to take `@tree-tool/trees` as a dependency.
+Unity tree builds take `@tree-tool/trees` as a dependency (a vendored tarball, `bun run trees:update` there).
+
+## Live site and shared models
+
+Every push to `main` checks, builds `app/dist` and publishes it on GitHub Pages (`.github/workflows/pages.yml`):
+<https://marcusta.github.io/tree-tool/>. Shared models (settings, own textures, shader profiles) are collected in
+[tree-tool-models](https://github.com/marcusta/tree-tool-models) through pull requests.
