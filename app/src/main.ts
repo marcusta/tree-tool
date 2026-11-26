@@ -87,7 +87,9 @@ function applySettings(s: TreeExportSettings): void {
 const modelInUse = (): boolean => !!model && (custom?.from === 'model' ||
     PARTS.some(part => Object.values(picks[part]).some(p => p !== 'none' && p.from === 'model')));
 /** Is the tree still the model's: its pictures in use, or its settings unchanged? */
-const modelShown = (): boolean => modelInUse() || (!!model && JSON.stringify(settings()) === JSON.stringify(model.tree));
+const modelShown = (): boolean => modelInUse() || (!!model && sameTree(settings(), model.tree));
+/** The same tree, whatever order the slider changes are listed in. */
+const sameTree = (a: TreeExportSettings, b: TreeExportSettings): boolean => toHash(a) === toHash(b);
 
 /** The species' own pictures: slots its Unity material fills with a drawn atlas, or leaves empty. */
 function speciesPicks(): Picks {
@@ -505,7 +507,12 @@ async function start(): Promise<void> {
     const modelId = fromLink ? link.model : stored?.model;
     const entry = modelId ? index.find(m => m.id === modelId) : undefined;
     if (entry) await loadModel(entry, wanted);
-    else if (modelId && fromLink) $('link-status').textContent = `the shared model "${modelId}" is not in the list`;
+    else {
+        if (modelId && fromLink) $('link-status').textContent = `the shared model "${modelId}" is not in the list`;
+        // a link to a shared model's settings shows that model
+        model = index.find(m => sameTree(m.tree, settings())) ?? null;
+        renderModels();
+    }
 }
 void start();
 // For tests and for looking from the console.
